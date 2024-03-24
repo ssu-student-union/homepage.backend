@@ -1,13 +1,14 @@
-package ussum.homepage.domain.user;
+package ussum.homepage.domain.comment;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class User {
+public class PostComment {
     private Long id;
-    private String name;
-    private Long studentId;
-    private String profileImage;
+    private String content;
+    private Long postId;
+    private Long userId;
 }
