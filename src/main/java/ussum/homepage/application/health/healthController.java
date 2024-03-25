@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class healthController {
-    @GetMapping("/health-check")
+    @GetMapping("/")
     public ResponseEntity<Void> checkHealthStatus() {
         return new ResponseEntity<>(HttpStatus.OK);
     }
