@@ -6,8 +6,8 @@ import ussum.homepage.domain.post.Post;
 
 @Component
 public class CommentMapper {
-    public PostComment toDomain(PostComment postComment){
-
-
-    }
+//    public PostComment toDomain(PostComment postComment){
+//
+//
+//    }
 }
