@@ -30,4 +30,20 @@ public class Post {
     private Long userId;
     private Long boardId;
     private Long categoryId;
+
+    public static Post of(Long id,
+                          String title,
+                          String content,
+                          Integer viewCount,
+                          String thumbnailImage,
+                          List<String> additionalData,
+                          LocalDateTime createdAt,
+                          LocalDateTime updatedAt,
+                          LocalDateTime lastEditedAt,
+                          LocalDateTime deletedAt,
+                          Long userId,
+                          Long boardId,
+                          Long categoryId) {
+        return new Post(id, title, content, viewCount, thumbnailImage, additionalData, createdAt, updatedAt, lastEditedAt, deletedAt, userId, boardId, categoryId);
+    }
 }
