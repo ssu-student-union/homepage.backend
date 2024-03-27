@@ -12,4 +12,9 @@ public class Board {
     private Long id;
     private String boardCode;
     private String name;
+    public static Board of(Long id,
+                           BoardCode boardCode,
+                           String name){
+        return new Board(id, String.valueOf(boardCode), name);
+    }
 }

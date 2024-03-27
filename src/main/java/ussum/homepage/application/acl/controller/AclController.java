@@ -4,16 +4,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ussum.homepage.application.acl.service.AclService;
 import ussum.homepage.application.acl.service.dto.response.BoardAclResponse;
 import ussum.homepage.global.ApiResponse;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping
 @RestController
 public class AclController {
+    private final AclService aclService;
     @GetMapping("/boards/:boardCode/acls")
-    public ApiResponse<BoardAclResponse> getAcls() {
-
-        return ApiResponse.onSuccess();
+    public ApiResponse<List<BoardAclResponse>> getAcls(String boardCode) {
+        List<BoardAclResponse> acls = aclService.getBoardAclList(boardCode);
+        return ApiResponse.onSuccess(acls);
     }
 }
