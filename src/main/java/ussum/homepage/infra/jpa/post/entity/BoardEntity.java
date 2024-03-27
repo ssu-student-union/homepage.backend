@@ -14,4 +14,14 @@ public class BoardEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private BoardCode boardCode;
     private String name;
+
+    public BoardEntity(Long id, BoardCode boardCode, String name) {
+        this.id = id;
+        this.boardCode = boardCode;
+        this.name = name;
+    }
+
+    public static BoardEntity from(Long id){
+        return new BoardEntity(id, null,null);
+    }
 }

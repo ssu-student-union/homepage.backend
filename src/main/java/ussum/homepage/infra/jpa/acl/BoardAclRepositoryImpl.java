@@ -28,4 +28,8 @@ public class BoardAclRepositoryImpl implements BoardAclRepository {
                 .map(aclMapper::toDomain)
                 .toList();
     }
+    @Override
+    public void save(BoardAcl boardAcl){
+        boardAclJpaRepository.save(aclMapper.toEntity(boardAcl));
+    }
 }

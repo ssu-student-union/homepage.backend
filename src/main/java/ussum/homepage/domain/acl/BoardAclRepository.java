@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface BoardAclRepository {
     List<BoardAcl> findByBoardId(Long boardId);
+    void save(BoardAcl boardAcl);
 }
