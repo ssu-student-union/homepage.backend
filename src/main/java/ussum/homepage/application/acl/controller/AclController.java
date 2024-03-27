@@ -16,7 +16,7 @@ import java.util.List;
 public class AclController {
     private final AclService aclService;
     @GetMapping("/boards/:boardCode/acls")
-    public ApiResponse<List<BoardAclResponse>> getAcls(@PathVariable(name = ":boardCode") String boardCode) {
+    public ApiResponse<List<BoardAclResponse>> getBoardAcls(@PathVariable(name = ":boardCode") String boardCode) {
         List<BoardAclResponse> acls = aclService.getBoardAclList(boardCode);
         return ApiResponse.onSuccess(acls);
     }
