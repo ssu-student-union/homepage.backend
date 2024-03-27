@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface PostAclRepository {
     List<PostAcl> findByPostId(Long postId);
+    void save(PostAcl postAcl);
 }

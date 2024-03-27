@@ -21,4 +21,9 @@ public class PostAclRepositoryImpl implements PostAclRepository {
                 .map(aclMapper::toDomain)
                 .toList();
     }
+
+    @Override
+    public void save(PostAcl postAcl) {
+        postAclJpaRepository.save(aclMapper.toEntity(postAcl));
+    }
 }
