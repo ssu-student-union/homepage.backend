@@ -18,5 +18,4 @@ public class AclMapper {
                 boardAclEntity.getBoardEntity().getId()
         );
     }
-    public List<BoardAcl>
 }
