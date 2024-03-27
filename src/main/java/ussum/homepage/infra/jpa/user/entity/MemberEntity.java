@@ -1,13 +1,14 @@
 package ussum.homepage.infra.jpa.user.entity;
 import jakarta.persistence.*;
 import lombok.*;
+import ussum.homepage.infra.jpa.BaseEntity;
 
 
 @Entity
 @Table(name = "member")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MemberEntity {
+public class MemberEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

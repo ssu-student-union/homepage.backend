@@ -1,13 +1,14 @@
 package ussum.homepage.infra.jpa.post.entity;
 import jakarta.persistence.*;
 import lombok.*;
+import ussum.homepage.infra.jpa.BaseEntity;
 import ussum.homepage.infra.jpa.user.entity.MajorCode;
 
 @Entity
 @Table(name = "category")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CategoryEntity {
+public class CategoryEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
