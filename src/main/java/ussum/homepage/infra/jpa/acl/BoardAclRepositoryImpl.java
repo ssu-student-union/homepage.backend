@@ -34,4 +34,8 @@ public class BoardAclRepositoryImpl implements BoardAclRepository {
     public Optional<BoardAcl> findById(Long boardAclId){
         return boardAclJpaRepository.findById(boardAclId).map(aclMapper::toDomain);
     }
+    @Override
+    public void delete(BoardAcl boardAcl){
+        boardAclJpaRepository.delete(aclMapper.toEntity(boardAcl));
+    }
 }
