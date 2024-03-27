@@ -2,9 +2,12 @@ package ussum.homepage.infra.jpa.post.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import ussum.homepage.global.error.exception.InvalidValueException;
 import ussum.homepage.infra.jpa.postlike.entity.Reaction;
 
 import java.util.Arrays;
+
+import static ussum.homepage.global.error.status.ErrorStatus.INVALID_BOARDCODE;
 
 @RequiredArgsConstructor
 @Getter
