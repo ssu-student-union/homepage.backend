@@ -26,5 +26,7 @@ public class AclReader {
         return postAclRepository.findByPostId(postId);
     }
 
-
+    public BoardAcl getBoardAcl(Long boarAclId){
+        return boardAclRepository.findById(boarAclId).orElseThrow(()-> new GeneralException(BOARD_ACL_NOT_FOUND));
+    }
 }
