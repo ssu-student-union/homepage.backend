@@ -10,9 +10,9 @@ public record BoardAclUpdateRequest(
         String type,
         String action
 ) {
-    public BoardAcl toDomain(Long boardId){
+    public BoardAcl toDomain(Long boardAclId, Long boardId){
         return BoardAcl.of(
-                null,
+                boardAclId,
                 Target.getEnumTargetFromStringTarget(target),
                 Type.getEnumTypeFromStringType(type),
                 Action.getEnumActionFromStringAction(action),

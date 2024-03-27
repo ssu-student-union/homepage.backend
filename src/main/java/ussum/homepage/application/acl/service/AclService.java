@@ -37,7 +37,7 @@ public class AclService {
     }
     public BoardAclResponse editBoardAcl(Long boardAclId, BoardAclUpdateRequest boardAclUpdateRequest){
         BoardAcl boardAcl = aclReader.getBoardAcl(boardAclId);
-        return BoardAclResponse.of(aclModifier.updateBoardAcl(boardAclUpdateRequest.toDomain(boardAcl.getBoardId())));
+        return BoardAclResponse.of(aclModifier.updateBoardAcl(boardAclId, boardAcl, boardAclUpdateRequest));
     }
     public void deleteBoardAcl(String boardCode, Long boardAclId){
         aclModifier.deleteBoardAcl(boardCode, boardAclId);
