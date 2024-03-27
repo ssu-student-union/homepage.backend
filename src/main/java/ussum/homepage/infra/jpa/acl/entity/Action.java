@@ -2,8 +2,11 @@ package ussum.homepage.infra.jpa.acl.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import ussum.homepage.global.error.exception.InvalidValueException;
 
 import java.util.Arrays;
+
+import static ussum.homepage.global.error.status.ErrorStatus.INVALID_ACTION;
 
 @RequiredArgsConstructor
 @Getter
@@ -20,6 +23,6 @@ public enum Action {
         return Arrays.stream(values())
                 .filter(order -> order.stringAction.equals(stringAction))
                 .findFirst()
-//                .orElseThrow(() -> new InvalidValueException(INVALID_ACTION));
+                .orElseThrow(() -> new InvalidValueException(INVALID_ACTION));
     }
 }

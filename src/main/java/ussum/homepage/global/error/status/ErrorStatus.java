@@ -38,6 +38,17 @@ public enum ErrorStatus implements BaseErrorCode {
 
     //Role 관련 에러
     ROLE_PERMISSION_DENIED(HttpStatus.FORBIDDEN,"ROLE_001","필요한 Role을 가지고 있지 않습니다."),
+    //enum class
+    INVALID_ROLE(HttpStatus.FORBIDDEN,"ENUM_001","유효하지 않은 Role입니다."),
+    INVALID_MAJORCODE(HttpStatus.FORBIDDEN,"ENUM_002","유효하지 않은 MAJORCODE입니다."),
+    INVALID_REACTION(HttpStatus.FORBIDDEN,"ENUM_003","유효하지 않은 REACTION입니다."),
+    INVALID_BOARDCODE(HttpStatus.FORBIDDEN,"ENUM_004","유효하지 않은 BOARDCODE입니다."),
+    INVALID_TYPE(HttpStatus.FORBIDDEN,"ENUM_005","유효하지 않은 TYPE입니다."),
+    INVALID_TARGET(HttpStatus.FORBIDDEN,"ENUM_006","유효하지 않은 TARGET입니다."),
+    INVALID_ORDER(HttpStatus.FORBIDDEN,"ENUM_007","유효하지 않은 ORDER입니다."),
+    INVALID_ACTION(HttpStatus.FORBIDDEN,"ENUM_008","유효하지 않은 ACTION입니다."),
+
+
 
     //Token 관련 에러
     INVALID_TOKEN(HttpStatus.BAD_REQUEST,"TOKEN_001","토큰이 올바르지 않습니다."),

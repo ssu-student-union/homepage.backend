@@ -2,8 +2,11 @@ package ussum.homepage.infra.jpa.user.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import ussum.homepage.global.error.exception.InvalidValueException;
 
 import java.util.Arrays;
+
+import static ussum.homepage.global.error.status.ErrorStatus.INVALID_MAJORCODE;
 
 @RequiredArgsConstructor
 @Getter
