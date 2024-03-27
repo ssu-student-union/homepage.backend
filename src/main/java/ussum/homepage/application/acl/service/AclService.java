@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ussum.homepage.application.acl.service.dto.request.BoardAclCreateRequest;
+import ussum.homepage.application.acl.service.dto.request.BoardAclUpdateRequest;
 import ussum.homepage.application.acl.service.dto.response.BoardAclResponse;
 import ussum.homepage.domain.acl.BoardAcl;
 import ussum.homepage.domain.acl.service.AclAppender;
+import ussum.homepage.domain.acl.service.AclModifier;
 import ussum.homepage.domain.acl.service.AclReader;
 import ussum.homepage.domain.post.Board;
 import ussum.homepage.domain.post.service.BoardReader;
@@ -21,6 +23,7 @@ public class AclService {
     private final BoardReader boardReader;
     private final AclAppender aclAppender;
     private final AclReader aclReader;
+    private final AclModifier aclModifier;
     public List<BoardAclResponse> getBoardAclList(String boardCode){
         Board board = boardReader.getBoardWithBoardCode(boardCode);
         List<BoardAcl> boardAclList = aclReader.getBoardAclList(board.getId());
@@ -31,5 +34,9 @@ public class AclService {
         Board board = boardReader.getBoardWithBoardCode(boardCode);
         BoardAcl boardAcl = aclAppender.appendBoardAcl(boardAclCreateRequest.toDomain(board.getId()));
         return BoardAclResponse.of(boardAcl);
+    }
+    public BoardAclResponse editBoardAcl(Long boardAclId, BoardAclUpdateRequest boardAclUpdateRequest){
+        BoardAcl boardAcl = aclReader.getBoardAcl(boardAclId);
+        return BoardAclResponse.of(aclModifier.updateBoardAcl(boardAclUpdateRequest.toDomain(boardAcl.getBoardId())));
     }
 }

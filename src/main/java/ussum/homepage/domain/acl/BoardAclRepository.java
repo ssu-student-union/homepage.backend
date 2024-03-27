@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface BoardAclRepository {
     List<BoardAcl> findByBoardId(Long boardId);
     void save(BoardAcl boardAcl);
+    BoardAcl update(BoardAcl boardAcl);
+    Optional<BoardAcl> findById(Long boardAclId);
 }

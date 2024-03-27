@@ -1,19 +1,13 @@
 package ussum.homepage.infra.jpa.acl;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ussum.homepage.domain.acl.BoardAcl;
 import ussum.homepage.domain.acl.BoardAclRepository;
-import ussum.homepage.global.error.exception.GeneralException;
-import ussum.homepage.infra.jpa.acl.entity.BoardAclEntity;
 import ussum.homepage.infra.jpa.acl.repository.BoardAclJpaRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import static ussum.homepage.global.error.status.ErrorStatus.USER_NOT_FOUND;
 
 @Repository
 @RequiredArgsConstructor
@@ -31,5 +25,13 @@ public class BoardAclRepositoryImpl implements BoardAclRepository {
     @Override
     public void save(BoardAcl boardAcl){
         boardAclJpaRepository.save(aclMapper.toEntity(boardAcl));
+    }
+    @Override
+    public BoardAcl update(BoardAcl boardAcl){
+        return aclMapper.toDomain(boardAclJpaRepository.save(aclMapper.toEntity(boardAcl)));
+    }
+    @Override
+    public Optional<BoardAcl> findById(Long boardAclId){
+        return boardAclJpaRepository.findById(boardAclId).map(aclMapper::toDomain);
     }
 }

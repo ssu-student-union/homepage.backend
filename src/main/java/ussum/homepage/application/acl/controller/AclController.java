@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ussum.homepage.application.acl.service.AclService;
 import ussum.homepage.application.acl.service.dto.request.BoardAclCreateRequest;
+import ussum.homepage.application.acl.service.dto.request.BoardAclUpdateRequest;
 import ussum.homepage.application.acl.service.dto.response.BoardAclResponse;
 import ussum.homepage.global.ApiResponse;
 
@@ -22,6 +23,11 @@ public class AclController {
     @PostMapping("/boards/:boardCode/acls")
     public ApiResponse<BoardAclResponse> createBoardAcl(@PathVariable(name = ":boardCode") String boardCode,@RequestBody BoardAclCreateRequest boardAclCreateRequest) {
         BoardAclResponse acl = aclService.createBoardAcl(boardCode, boardAclCreateRequest);
+        return ApiResponse.onSuccess(acl);
+    }
+    @PatchMapping("/boards/:boardCode/acls/:boardAclId")
+    public ApiResponse<BoardAclResponse> editBoardAcl(@PathVariable(name = ":boardAclId") Long boardAclId,@RequestBody BoardAclUpdateRequest boardAclUpdateRequest) {
+        BoardAclResponse acl = aclService.editBoardAcl(boardAclId, boardAclUpdateRequest);
         return ApiResponse.onSuccess(acl);
     }
 }
