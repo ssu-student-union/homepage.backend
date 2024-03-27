@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 import ussum.homepage.domain.acl.BoardAcl;
 import ussum.homepage.infra.jpa.acl.entity.BoardAclEntity;
 
-import java.util.List;
 
 @Component
 public class AclMapper {
