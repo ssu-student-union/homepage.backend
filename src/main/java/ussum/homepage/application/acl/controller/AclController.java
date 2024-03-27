@@ -28,7 +28,7 @@ public class AclController {
                                                           @PathVariable(name = ":postId") Long postId) {
         List<PostAclResponse> acls = aclService.getPostAclList(postId);
         return ApiResponse.onSuccess(acls);
-      
+    }
     @PostMapping("/boards/:boardCode/acls")
     public ApiResponse<BoardAclResponse> createBoardAcl(@PathVariable(name = ":boardCode") String boardCode,@RequestBody BoardAclCreateRequest boardAclCreateRequest) {
         BoardAclResponse acl = aclService.createBoardAcl(boardCode, boardAclCreateRequest);
