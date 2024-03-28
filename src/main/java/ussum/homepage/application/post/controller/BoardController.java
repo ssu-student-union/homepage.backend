@@ -27,7 +27,7 @@ public class BoardController {
         return ApiResponse.onSuccess(null);
     }
     @GetMapping("/:boardCode")
-    public ApiResponse<BoardResponse> getBoardList(@PathVariable(name = "boardCode")String boardCode) {
+    public ApiResponse<BoardResponse> getBoard(@PathVariable(name = "boardCode")String boardCode) {
         BoardResponse board = boardService.getBoard(boardCode);
         return ApiResponse.onSuccess(board);
     }
