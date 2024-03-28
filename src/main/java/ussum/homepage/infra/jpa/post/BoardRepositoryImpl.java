@@ -28,4 +28,8 @@ public class BoardRepositoryImpl implements BoardRepository {
     public List<Board> findAll(){
         return boardJpaRepository.findAll().stream().map(boardMapper::toDomain).toList();
     }
+    @Override
+    public Board save(Board board){
+        return boardMapper.toDomain(boardJpaRepository.save(boardMapper.toEntity(board)));
+    }
 }

@@ -23,8 +23,8 @@ public class BoardAclRepositoryImpl implements BoardAclRepository {
                 .toList();
     }
     @Override
-    public void save(BoardAcl boardAcl){
-        boardAclJpaRepository.save(aclMapper.toEntity(boardAcl));
+    public BoardAcl save(BoardAcl boardAcl){
+        return aclMapper.toDomain(boardAclJpaRepository.save(aclMapper.toEntity(boardAcl)));
     }
     @Override
     public BoardAcl update(BoardAcl boardAcl){

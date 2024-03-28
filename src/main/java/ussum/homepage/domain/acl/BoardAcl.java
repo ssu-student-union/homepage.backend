@@ -19,11 +19,11 @@ public class BoardAcl {
     private Long boardId;
 
     public static BoardAcl of(Long id,
-                              Target target,
-                              Type type,
-                              Action action,
-                              Order order,
+                              String target,
+                              String type,
+                              String action,
+                              String order,
                               Long boardId){
-        return new BoardAcl(id, String.valueOf(target),String.valueOf(type), String.valueOf(action), String.valueOf(order), boardId);
+        return new BoardAcl(id, target,type, action, order, boardId);
     }
 }

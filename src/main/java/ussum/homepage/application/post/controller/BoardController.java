@@ -1,12 +1,10 @@
 package ussum.homepage.application.post.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ussum.homepage.application.post.service.BoardService;
 import ussum.homepage.application.post.service.dto.BoardListResponse;
+import ussum.homepage.application.post.service.dto.request.BoardCreateRequest;
 import ussum.homepage.domain.post.service.BoardReader;
 import ussum.homepage.global.ApiResponse;
 
@@ -14,7 +12,6 @@ import ussum.homepage.global.ApiResponse;
 @RequestMapping("/boards")
 @RestController
 public class BoardController {
-    private final BoardReader boardReader;
     private final BoardService boardService;
     @GetMapping
     public ApiResponse<BoardListResponse> getBoardList() {
@@ -22,8 +19,8 @@ public class BoardController {
         return ApiResponse.onSuccess(board);
     }
     @PostMapping
-    public ApiResponse<?> createBoard() {
-
+    public ApiResponse<?> createBoard(@RequestBody BoardCreateRequest boardCreateRequest) {
+        boardService.createBoard(boardCreateRequest);
         return ApiResponse.onSuccess(null);
     }
 }

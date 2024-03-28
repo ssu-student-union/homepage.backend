@@ -13,10 +13,10 @@ public class AclMapper {
     public BoardAcl toDomain(BoardAclEntity boardAclEntity){
         return BoardAcl.of(
                 boardAclEntity.getId(),
-                boardAclEntity.getTarget(),
-                boardAclEntity.getType(),
-                boardAclEntity.getAction(),
-                boardAclEntity.getOrder(),
+                String.valueOf(boardAclEntity.getTarget()),
+                String.valueOf(boardAclEntity.getType()),
+                String.valueOf(boardAclEntity.getAction()),
+                String.valueOf(boardAclEntity.getOrder()),
                 boardAclEntity.getBoardEntity().getId()
         );
     }
