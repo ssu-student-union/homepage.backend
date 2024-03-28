@@ -29,6 +29,7 @@ public class BoardAclEntity {
     private BoardAclEntity(Long id, Target target, Type type, Action action, Order order, BoardEntity boardEntity){
         this.id = id;
         this.target = target;
+        this.type = type;
         this.action = action;
         this.order = order;
         this.boardEntity = boardEntity;

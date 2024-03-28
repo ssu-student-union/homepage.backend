@@ -24,4 +24,7 @@ public class BoardEntity extends BaseEntity {
     public static BoardEntity from(Long id){
         return new BoardEntity(id, null,null);
     }
+    public static BoardEntity of(Long id, BoardCode boardCode, String name){
+        return new BoardEntity(id, boardCode,name);
+    }
 }

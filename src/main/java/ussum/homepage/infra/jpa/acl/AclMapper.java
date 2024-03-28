@@ -29,7 +29,8 @@ public class AclMapper {
                 postAclEntity.getAction(),
                 postAclEntity.getOrder(),
                 postAclEntity.getPostEntity().getId()
-          
+        );
+    }
     public BoardAclEntity toEntity(BoardAcl boardAcl){
         return BoardAclEntity.of(
                 boardAcl.getId(),
