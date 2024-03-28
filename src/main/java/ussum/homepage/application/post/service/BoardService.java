@@ -28,4 +28,8 @@ public class BoardService {
     public void createBoard(BoardCreateRequest boardCreateRequest){
         boardAppender.createBoard(boardCreateRequest.toDomain(), boardCreateRequest.toList());
     }
+    public BoardResponse getBoard(String boardCode){
+        Board board = boardReader.getBoardWithBoardCode(boardCode);
+        return boardFormatter.format(board.getId());
+    }
 }

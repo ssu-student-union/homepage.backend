@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ussum.homepage.application.post.service.BoardService;
 import ussum.homepage.application.post.service.dto.BoardListResponse;
+import ussum.homepage.application.post.service.dto.BoardResponse;
 import ussum.homepage.application.post.service.dto.request.BoardCreateRequest;
 import ussum.homepage.domain.post.service.BoardReader;
 import ussum.homepage.global.ApiResponse;
@@ -22,5 +23,10 @@ public class BoardController {
     public ApiResponse<?> createBoard(@RequestBody BoardCreateRequest boardCreateRequest) {
         boardService.createBoard(boardCreateRequest);
         return ApiResponse.onSuccess(null);
+    }
+    @GetMapping("/:boardCode")
+    public ApiResponse<BoardResponse> getBoardList(@PathVariable(name = "boardCode")String boardCode) {
+        BoardResponse board = boardService.getBoard(boardCode);
+        return ApiResponse.onSuccess(board);
     }
 }
