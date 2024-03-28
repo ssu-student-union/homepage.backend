@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ussum.homepage.application.acl.service.dto.request.BoardAclCreateRequest;
 import ussum.homepage.application.acl.service.dto.request.BoardAclUpdateRequest;
 import ussum.homepage.application.acl.service.dto.response.BoardAclResponse;
-import ussum.homepage.application.acl.service.dto.response.PostAclResponse;
+import ussum.homepage.application.acl.service.post.dto.response.PostAclResponse;
 import ussum.homepage.domain.acl.BoardAcl;
 import ussum.homepage.domain.acl.PostAcl;
 import ussum.homepage.domain.acl.service.AclAppender;
@@ -35,11 +35,11 @@ public class AclService {
                 .collect(Collectors.toList());
     }
 
-    public List<PostAclResponse> getPostAclList(Long postId) {
-        List<PostAcl> postAclList = aclReader.getPostAclList(postId);
-        return postAclList.stream().map(postAcl -> PostAclResponse.of(postAcl))
-                .collect(Collectors.toList());
-    }
+//    public List<PostAclResponse> getPostAclList(Long postId) {
+//        List<PostAcl> postAclList = aclReader.getPostAclList(postId);
+//        return postAclList.stream().map(postAcl -> PostAclResponse.of(postAcl))
+//                .collect(Collectors.toList());
+//    }
 
     public BoardAclResponse createBoardAcl(String boardCode, BoardAclCreateRequest boardAclCreateRequest){
         Board board = boardReader.getBoardWithBoardCode(boardCode);

@@ -7,6 +7,6 @@ import ussum.homepage.infra.jpa.acl.entity.PostAclEntity;
 
 import java.util.List;
 
-public interface PostAclJpaRepository extends JpaRepository<PostAcl, Long> {
+public interface PostAclJpaRepository extends JpaRepository<PostAclEntity, Long> {
     List<PostAclEntity> findAllByPostId(Long postId);
 }

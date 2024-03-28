@@ -2,11 +2,13 @@ package ussum.homepage.infra.jpa.acl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
 import ussum.homepage.domain.acl.PostAcl;
 import ussum.homepage.domain.acl.PostAclRepository;
 import ussum.homepage.infra.jpa.acl.repository.PostAclJpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -20,5 +22,25 @@ public class PostAclRepositoryImpl implements PostAclRepository {
                 .stream()
                 .map(aclMapper::toDomain)
                 .toList();
+    }
+
+    @Override
+    public void save(PostAcl postAcl) {
+        postAclJpaRepository.save(aclMapper.toEntity(postAcl));
+    }
+
+    @Override
+    public PostAcl update(PostAcl postAcl) {
+        return aclMapper.toDomain(postAclJpaRepository.save(aclMapper.toEntity(postAcl)));
+    }
+
+    @Override
+    public Optional<PostAcl> findById(Long postAclId) {
+        return postAclJpaRepository.findById(postAclId).map(aclMapper::toDomain);
+    }
+
+    @Override
+    public void delete(PostAcl postAcl) {
+        postAclJpaRepository.delete(aclMapper.toEntity(postAcl));
     }
 }
