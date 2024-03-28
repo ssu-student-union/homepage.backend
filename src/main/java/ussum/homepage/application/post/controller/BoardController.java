@@ -2,10 +2,12 @@ package ussum.homepage.application.post.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ussum.homepage.application.acl.service.dto.response.BoardAclResponse;
 import ussum.homepage.application.post.service.BoardService;
 import ussum.homepage.application.post.service.dto.BoardListResponse;
 import ussum.homepage.application.post.service.dto.BoardResponse;
 import ussum.homepage.application.post.service.dto.request.BoardCreateRequest;
+import ussum.homepage.application.post.service.dto.request.BoardUpdateRequest;
 import ussum.homepage.domain.post.service.BoardReader;
 import ussum.homepage.global.ApiResponse;
 
@@ -30,8 +32,8 @@ public class BoardController {
         return ApiResponse.onSuccess(board);
     }
     @PatchMapping("/:boardCode")
-    public ApiResponse<BoardResponse> editBoard(@PathVariable(name = "boardCode")String boardCode) {
-        BoardResponse board = boardService.getBoard(boardCode);
+    public ApiResponse<BoardResponse> editBoard(@PathVariable(name = "boardCode")String boardCode,@RequestBody BoardUpdateRequest boardUpdateRequest) {
+        BoardResponse board = boardService.editBoard(boardCode, boardUpdateRequest);
         return ApiResponse.onSuccess(board);
     }
 }

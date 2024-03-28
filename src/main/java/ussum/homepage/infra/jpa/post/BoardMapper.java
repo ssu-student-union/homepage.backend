@@ -10,7 +10,7 @@ public class BoardMapper {
     public Board toDomain(BoardEntity boardEntity){
         return Board.of(
                 boardEntity.getId(),
-                boardEntity.getBoardCode(),
+                String.valueOf(boardEntity.getBoardCode()),
                 boardEntity.getName(),
                 boardEntity.getCreatedAt(),
                 boardEntity.getUpdatedAt()

@@ -17,7 +17,7 @@ public class Board {
     private String createdAt;
     private String updatedAt;
     public static Board of(Long id,
-                           BoardCode boardCode,
+                           String boardCode,
                            String name, LocalDateTime createdAt, LocalDateTime updatedAt){
         return new Board(id, String.valueOf(boardCode), name,String.valueOf(createdAt),String.valueOf(updatedAt));
     }
