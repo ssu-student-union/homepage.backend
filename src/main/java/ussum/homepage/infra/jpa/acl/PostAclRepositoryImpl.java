@@ -2,6 +2,7 @@ package ussum.homepage.infra.jpa.acl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
 import ussum.homepage.domain.acl.PostAcl;
 import ussum.homepage.domain.acl.PostAclRepository;
 import ussum.homepage.infra.jpa.acl.repository.PostAclJpaRepository;
@@ -25,5 +26,10 @@ public class PostAclRepositoryImpl implements PostAclRepository {
     @Override
     public void save(PostAcl postAcl) {
         postAclJpaRepository.save(aclMapper.toEntity(postAcl));
+    }
+
+    @Override
+    public PostAcl update(PostAcl postAcl) {
+        return aclMapper.toDomain(postAclJpaRepository.save(aclMapper.toEntity(postAcl)));
     }
 }

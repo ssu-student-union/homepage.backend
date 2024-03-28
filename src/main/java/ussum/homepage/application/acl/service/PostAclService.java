@@ -37,4 +37,9 @@ public class PostAclService {
         PostAcl postAcl = postAclAppender.appendPostAcl(postAclCreateRequest.toDomain(postId));
         return PostAclResponse.of(postAcl);
     }
+
+    public PostAclResponse editPostAcl(Long postId, Long postAclId, PostAclUpdateRequest postAclUpdateRequest) {
+        PostAcl postAcl = postAclReader.getPostAcl(postAclId);
+        return PostAclResponse.of(postAclModifier.updatePostAcl(postAclId, postAcl, postAclUpdateRequest));
+    }
 }
