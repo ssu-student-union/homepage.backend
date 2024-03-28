@@ -41,7 +41,11 @@ public class PostAclController {
         return ApiResponse.onSuccess(postAclService.editPostAcl(postId, postAclId, postAclUpdateRequest));
     }
 
+    @DeleteMapping("/boards/posts/:postId/acls/:postAclId")
+    public ApiResponse<PostAclResponse> deletePostAcl(@PathVariable(name = ":postId") Long postId,
+                                                      @PathVariable(name = ":postAclId") Long postAclId) {
 
-
-
+        postAclService.deletePostAcl(postId, postAclId);
+        return ApiResponse.onSuccess(null);
+    }
 }

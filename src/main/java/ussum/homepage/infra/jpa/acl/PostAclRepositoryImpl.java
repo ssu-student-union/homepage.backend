@@ -8,6 +8,7 @@ import ussum.homepage.domain.acl.PostAclRepository;
 import ussum.homepage.infra.jpa.acl.repository.PostAclJpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -31,5 +32,15 @@ public class PostAclRepositoryImpl implements PostAclRepository {
     @Override
     public PostAcl update(PostAcl postAcl) {
         return aclMapper.toDomain(postAclJpaRepository.save(aclMapper.toEntity(postAcl)));
+    }
+
+    @Override
+    public Optional<PostAcl> findById(Long postAclId) {
+        return postAclJpaRepository.findById(postAclId).map(aclMapper::toDomain);
+    }
+
+    @Override
+    public void delete(PostAcl postAcl) {
+        postAclJpaRepository.delete(aclMapper.toEntity(postAcl));
     }
 }

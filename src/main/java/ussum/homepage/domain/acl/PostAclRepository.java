@@ -9,4 +9,5 @@ public interface PostAclRepository {
     PostAcl update(PostAcl postAcl);
 
     Optional<PostAcl> findById(Long postAclId);
+    void delete(PostAcl postAcl);
 }

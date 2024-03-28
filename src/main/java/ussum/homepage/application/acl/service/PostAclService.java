@@ -42,4 +42,8 @@ public class PostAclService {
         PostAcl postAcl = postAclReader.getPostAcl(postAclId);
         return PostAclResponse.of(postAclModifier.updatePostAcl(postAclId, postAcl, postAclUpdateRequest));
     }
+
+    public void deletePostAcl(Long postId, Long postAclId) {
+        postAclModifier.deletePostAcl(postAclId);
+    }
 }
