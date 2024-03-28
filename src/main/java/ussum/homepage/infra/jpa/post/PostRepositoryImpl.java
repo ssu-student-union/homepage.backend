@@ -25,13 +25,5 @@ public class PostRepositoryImpl implements PostRepository {
         return postJpaRepository.findById(postId).map(postMapper::toDomain);
     }
 
-    @Override
-    public Optional<List<Post>> findByBoard(String boardCode,Long boardId) {
-        Optional<Board> findBoard = boardJpaRepository.findByBoardCode(BoardCode.getEnumBoardCodeFromStringBoardCode(boardCode))
-                .map(boardMapper::toDomain);
 
-        return postJpaRepository.findAllPostByBoard(findBoard.get())
-                .map(postMapper::toDomain)
-                .stream().toList();
-    }
 }

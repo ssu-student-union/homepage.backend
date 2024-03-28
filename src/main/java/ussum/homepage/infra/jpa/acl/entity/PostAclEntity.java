@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import ussum.homepage.domain.post.Post;
+import ussum.homepage.infra.jpa.post.entity.BoardEntity;
 import ussum.homepage.infra.jpa.post.entity.PostEntity;
 import ussum.homepage.infra.jpa.user.entity.UserEntity;
 
@@ -26,5 +28,20 @@ public class PostAclEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private PostEntity postEntity;
+
+    private PostAclEntity(Long id, Target target, Type type, Action action, Order order, PostEntity postEntity) {
+        this.id = id;
+        this.target = target;
+        this.type = type;
+        this.action = action;
+        this.order = order;
+        this.postEntity = postEntity;
+    }
+
+    public static PostAclEntity of(Long id, Target target, Type type, Action action, Order order, PostEntity postEntity){
+        return new PostAclEntity(id, target, type, action, order, postEntity);
+    }
+
+
 
 }

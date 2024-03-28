@@ -9,5 +9,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PostJpaRepository extends JpaRepository<PostEntity,Long> {
-    Optional<List<PostEntity>> findAllPostByBoard(Board board);
+    List<PostEntity> findAllPostByBoard(Board board);
 }

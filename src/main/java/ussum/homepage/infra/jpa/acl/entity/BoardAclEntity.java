@@ -38,3 +38,4 @@ public class BoardAclEntity {
         return new BoardAclEntity(id, target, type, action, order, boardEntity);
     }
 }
+

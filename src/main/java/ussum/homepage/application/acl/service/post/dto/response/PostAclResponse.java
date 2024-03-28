@@ -1,6 +1,5 @@
-package ussum.homepage.application.acl.service.dto.response;
+package ussum.homepage.application.acl.service.post.dto.response;
 
-import ussum.homepage.domain.acl.BoardAcl;
 import ussum.homepage.domain.acl.PostAcl;
 
 public record PostAclResponse(Long id,

@@ -7,6 +7,7 @@ import ussum.homepage.infra.jpa.acl.entity.BoardAclEntity;
 import ussum.homepage.infra.jpa.acl.entity.PostAclEntity;
 import ussum.homepage.infra.jpa.acl.entity.*;
 import ussum.homepage.infra.jpa.post.entity.BoardEntity;
+import ussum.homepage.infra.jpa.post.entity.PostEntity;
 
 @Component
 public class AclMapper {
@@ -39,6 +40,17 @@ public class AclMapper {
                 Action.getEnumActionFromStringAction(boardAcl.getAction()),
                 Order.getEnumOrderFromStringOrder(boardAcl.getOrder()),
                 BoardEntity.from(boardAcl.getBoardId())
+        );
+    }
+
+    public PostAclEntity toEntity(PostAcl postAcl) {
+        return PostAclEntity.of(
+                postAcl.getId(),
+                Target.getEnumTargetFromStringTarget(postAcl.getTarget()),
+                Type.getEnumTypeFromStringType(postAcl.getType()),
+                Action.getEnumActionFromStringAction(postAcl.getAction()),
+                Order.getEnumOrderFromStringOrder(postAcl.getOrder()),
+                PostEntity.from(postAcl.getPostId())
         );
     }
 }
