@@ -16,4 +16,7 @@ public class BoardModifier {
                 boardReader.getBoardWithBoardCode(boardCode).getId()
         ));
     }
+    public void deleteBoard(String boardCode){
+        boardRepository.delete(boardReader.getBoardWithBoardCode(boardCode));
+    }
 }

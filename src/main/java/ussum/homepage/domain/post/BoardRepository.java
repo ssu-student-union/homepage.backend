@@ -8,4 +8,5 @@ public interface BoardRepository {
     Optional<Board> findByBoardCode(String boardCode);
     List<Board> findAll();
     Board save(Board board);
+    void delete(Board board);
 }

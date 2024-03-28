@@ -36,4 +36,10 @@ public class BoardController {
         BoardResponse board = boardService.editBoard(boardCode, boardUpdateRequest);
         return ApiResponse.onSuccess(board);
     }
+    @DeleteMapping("/:boardCode")
+    public ApiResponse<BoardResponse> deleteBoard(@PathVariable(name = "boardCode")String boardCode) {
+        boardService.deleteBoard(boardCode);
+        return ApiResponse.onSuccess(null);
+    }
+
 }

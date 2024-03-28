@@ -39,4 +39,7 @@ public class BoardService {
                 boardModifier.updateBoard(boardCode, boardUpdateRequest).getId()
         );
     }
+    public void deleteBoard(String boardCode){
+        boardModifier.deleteBoard(boardCode);
+    }
 }

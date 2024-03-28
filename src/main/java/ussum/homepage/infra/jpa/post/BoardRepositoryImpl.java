@@ -32,4 +32,8 @@ public class BoardRepositoryImpl implements BoardRepository {
     public Board save(Board board){
         return boardMapper.toDomain(boardJpaRepository.save(boardMapper.toEntity(board)));
     }
+    @Override
+    public void delete(Board board){
+        boardJpaRepository.delete(boardMapper.toEntity(board));
+    }
 }
