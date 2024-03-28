@@ -34,7 +34,7 @@ public class PostAclController {
     }
 
     @PatchMapping("/boards/posts/:postId/acls/:postAclId")
-    public ApiResponse<PostAclResponse> editBoardAcl(@PathVariable(name = ":postId") Long postId,
+    public ApiResponse<PostAclResponse> editPostAcl(@PathVariable(name = ":postId") Long postId,
                                                      @PathVariable(name = ":postAclId") Long postAclId,
                                                      @RequestBody PostAclUpdateRequest postAclUpdateRequest) {
 
