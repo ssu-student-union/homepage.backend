@@ -34,6 +34,7 @@ public enum ErrorStatus implements BaseErrorCode {
     //ACL 관련 에러
     ACL_PERMISSION_DENIED(HttpStatus.FORBIDDEN,"ACL_001","ACL에 권한이 없습니다."),
     BOARD_ACL_NOT_FOUND(HttpStatus.NOT_FOUND,"BOARD_ACL_001","게시판 ACL을 찾을 수 없습니다."),
+    POST_ACL_NOT_FOUND(HttpStatus.NOT_FOUND,"POST_ACL_001","포스트 ACL을 찾을 수 없습니다."),
 
     //Role 관련 에러
     ROLE_PERMISSION_DENIED(HttpStatus.FORBIDDEN,"ROLE_001","필요한 Role을 가지고 있지 않습니다."),

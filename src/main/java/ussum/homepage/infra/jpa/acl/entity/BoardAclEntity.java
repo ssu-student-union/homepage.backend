@@ -26,4 +26,16 @@ public class BoardAclEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
+    private BoardAclEntity(Long id, Target target, Type type, Action action, Order order, BoardEntity boardEntity){
+        this.id = id;
+        this.target = target;
+        this.type = type;
+        this.action = action;
+        this.order = order;
+        this.boardEntity = boardEntity;
+    }
+    public static BoardAclEntity of(Long id, Target target, Type type, Action action, Order order, BoardEntity boardEntity){
+        return new BoardAclEntity(id, target, type, action, order, boardEntity);
+    }
 }
+

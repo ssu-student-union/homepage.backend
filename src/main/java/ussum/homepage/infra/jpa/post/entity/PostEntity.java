@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "post")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class PostEntity extends BoardEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +34,8 @@ public class PostEntity extends BoardEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private CategoryEntity categoryEntity;
+
+    public static PostEntity from(Long id){
+        return new PostEntity(id,null,null,null,null,null,null,null,null,null,null);
+    }
 }
