@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ussum.homepage.application.post.service.BoardService;
 import ussum.homepage.application.post.service.dto.BoardListResponse;
 import ussum.homepage.domain.post.service.BoardReader;
 import ussum.homepage.global.ApiResponse;
@@ -14,9 +15,10 @@ import ussum.homepage.global.ApiResponse;
 @RestController
 public class BoardController {
     private final BoardReader boardReader;
+    private final BoardService boardService;
     @GetMapping
     public ApiResponse<BoardListResponse> getBoardList() {
-        BoardListResponse board = boardReader.getBoardList();
+        BoardListResponse board = boardService.getBoardList();
         return ApiResponse.onSuccess(board);
     }
     @PostMapping
