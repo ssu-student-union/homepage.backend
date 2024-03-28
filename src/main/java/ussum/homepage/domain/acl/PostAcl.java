@@ -17,13 +17,12 @@ public class PostAcl {
     private String action;
     private String order;
     private Long postId;
-
     public static PostAcl of(Long id,
-                              Target target,
-                              Type type,
-                              Action action,
-                              Order order,
+                              String target,
+                              String type,
+                              String action,
+                              String order,
                               Long postId){
-        return new PostAcl(id, String.valueOf(target),String.valueOf(type), String.valueOf(action), String.valueOf(order), postId);
+        return new PostAcl(id, target,type, action, order, postId);
     }
 }
