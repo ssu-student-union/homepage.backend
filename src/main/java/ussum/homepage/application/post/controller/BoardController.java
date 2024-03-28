@@ -29,4 +29,9 @@ public class BoardController {
         BoardResponse board = boardService.getBoard(boardCode);
         return ApiResponse.onSuccess(board);
     }
+    @PatchMapping("/:boardCode")
+    public ApiResponse<BoardResponse> editBoard(@PathVariable(name = "boardCode")String boardCode) {
+        BoardResponse board = boardService.getBoard(boardCode);
+        return ApiResponse.onSuccess(board);
+    }
 }
