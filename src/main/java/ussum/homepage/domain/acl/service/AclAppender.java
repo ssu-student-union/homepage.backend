@@ -11,7 +11,6 @@ import ussum.homepage.domain.acl.BoardAclRepository;
 public class AclAppender {
     private final BoardAclRepository boardAclRepository;
     public BoardAcl appendBoardAcl(BoardAcl boardAcl){
-         boardAclRepository.save(boardAcl);
-         return boardAcl;
+         return boardAclRepository.save(boardAcl);
     }
 }
