@@ -13,4 +13,8 @@ public class Category {
     private String majorCode;
     private String name;
     private Long boardId;
+
+    public static Category of(Long id, String majorCode, String name, Long boardId) {
+        return new Category(id, String.valueOf(majorCode), name, boardId);
+    }
 }
