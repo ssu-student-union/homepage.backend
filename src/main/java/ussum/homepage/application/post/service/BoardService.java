@@ -7,10 +7,13 @@ import ussum.homepage.application.post.service.dto.BoardListResponse;
 import ussum.homepage.application.post.service.dto.BoardResponse;
 import ussum.homepage.application.post.service.dto.request.BoardCreateRequest;
 import ussum.homepage.application.post.service.dto.request.BoardUpdateRequest;
+import ussum.homepage.domain.post.Board;
 import ussum.homepage.domain.post.service.BoardAppender;
 import ussum.homepage.domain.post.service.BoardModifier;
 import ussum.homepage.domain.post.service.BoardReader;
 import ussum.homepage.domain.post.service.formatter.BoardFormatter;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,9 +24,10 @@ public class BoardService {
     private final BoardFormatter boardFormatter;
     private final BoardModifier boardModifier;
     public BoardListResponse getBoardList(){
+        List<Board> boardList = boardReader.getBoardList();
         return BoardListResponse.of(
-                boardReader.getBoardList(),
-                boardReader.getBoardList().size()+1,
+                boardList,
+                boardList.size(),
                 boardFormatter::format);
     }
     public void createBoard(BoardCreateRequest boardCreateRequest){
