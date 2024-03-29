@@ -31,7 +31,7 @@ public class BoardController {
         BoardResponse board = boardService.getBoard(boardCode);
         return ApiResponse.onSuccess(board);
     }
-    @PatchMapping("/:boardCode")
+    @PatchMapping("/{boardCode}")
     public ApiResponse<BoardResponse> editBoard(@PathVariable(name = "boardCode")String boardCode,@RequestBody BoardUpdateRequest boardUpdateRequest) {
         BoardResponse board = boardService.editBoard(boardCode, boardUpdateRequest);
         return ApiResponse.onSuccess(board);
