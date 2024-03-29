@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ussum.homepage.application.post.service.dto.response.PostListResponse;
+import ussum.homepage.application.post.service.dto.response.PostResponse;
 import ussum.homepage.domain.post.Board;
 import ussum.homepage.domain.post.Post;
 import ussum.homepage.domain.post.service.*;
@@ -25,6 +26,12 @@ public class PostService {
         Page<Post> postList = postReader.getPostList(pageable, boardCode);
         return PostListResponse.of(postList.getContent(),
                 (int) postList.getTotalElements(), postFormatter::format);
+    }
+
+    public PostResponse getPost(String boardCode, Long postId) {
+        return postFormatter.format(
+                postReader.getPostWithBoardCode(boardCode, postId).getId()
+        );
     }
 
 }

@@ -29,6 +29,7 @@ public class PostFormatter implements ussum.homepage.domain.post.service.PostFor
 //        final UserResposne userResponse = userFormatter.format(post.getUserId());
 
 
-        return PostResponse.of(post,boardResponse,categoryResponse,userResponse);
+//        return PostResponse.of(post,boardResponse,categoryResponse,userResponse);
+        return null;
     }
 }

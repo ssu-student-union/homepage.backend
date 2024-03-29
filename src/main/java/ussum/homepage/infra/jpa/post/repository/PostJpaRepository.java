@@ -21,4 +21,6 @@ public interface PostJpaRepository extends JpaRepository<PostEntity,Long> {
                 order by pe.id desc 
         """)
     Page<PostEntity> findAllByBoard(Pageable pageable, @Param("board") BoardEntity board);
+
+    Optional<PostEntity> findByBoardEntityAndId(BoardEntity boardEntity, Long id);
 }

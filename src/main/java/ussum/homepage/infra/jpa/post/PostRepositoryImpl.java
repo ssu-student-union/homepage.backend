@@ -37,4 +37,11 @@ public class PostRepositoryImpl implements PostRepository {
 
         return postJpaRepository.findAllByBoard(pageable,boardEntity).map(postMapper::toDomain);
     }
+
+    @Override
+    public Optional<Post> findByBoardIdAndId(Long boardId, Long postId) {
+        BoardEntity boardEntity = boardJpaRepository.findById(boardId).orElseThrow(() -> new GeneralException(BOARD_NOT_FOUND));
+        return postJpaRepository.findByBoardEntityAndId(boardEntity, postId)
+                .map(postMapper::toDomain);
+    }
 }
