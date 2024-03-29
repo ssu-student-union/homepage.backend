@@ -18,6 +18,6 @@ public class MemberEntity extends BaseEntity {
     private UserEntity userEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "groups_id")
     private GroupEntity groupEntity;
 }

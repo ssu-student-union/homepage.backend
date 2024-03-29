@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ussum.homepage.infra.jpa.post.entity.BoardEntity;
-import ussum.homepage.infra.jpa.post.entity.PostEntity;
 
 @Entity
 @Table(name = "board_acl")
@@ -22,20 +21,20 @@ public class BoardAclEntity {
     @Enumerated(EnumType.STRING)
     private Action action;
     @Enumerated(EnumType.STRING)
-    private Order order;
+    private OrderType orderType;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
-    private BoardAclEntity(Long id, Target target, Type type, Action action, Order order, BoardEntity boardEntity){
+    private BoardAclEntity(Long id, Target target, Type type, Action action, OrderType orderType, BoardEntity boardEntity){
         this.id = id;
         this.target = target;
         this.type = type;
         this.action = action;
-        this.order = order;
+        this.orderType = orderType;
         this.boardEntity = boardEntity;
     }
-    public static BoardAclEntity of(Long id, Target target, Type type, Action action, Order order, BoardEntity boardEntity){
-        return new BoardAclEntity(id, target, type, action, order, boardEntity);
+    public static BoardAclEntity of(Long id, Target target, Type type, Action action, OrderType orderType, BoardEntity boardEntity){
+        return new BoardAclEntity(id, target, type, action, orderType, boardEntity);
     }
 }
 

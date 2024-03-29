@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import ussum.homepage.infra.jpa.BaseEntity;
 import ussum.homepage.infra.jpa.user.entity.UserEntity;
 
 import java.time.LocalDateTime;
@@ -13,7 +14,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class PostEntity extends BoardEntity{
+public class PostEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +22,7 @@ public class PostEntity extends BoardEntity{
     private String content;
     private Integer viewCount;
     private String thumbnailImage;
+    @Column(name = "additional_data", columnDefinition = "json")
     @JdbcTypeCode(SqlTypes.JSON)
     private List<String> additionalData;
     private LocalDateTime lastEditedAt;

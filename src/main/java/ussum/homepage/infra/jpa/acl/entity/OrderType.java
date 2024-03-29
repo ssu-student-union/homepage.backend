@@ -10,11 +10,11 @@ import static ussum.homepage.global.error.status.ErrorStatus.INVALID_ORDER;
 
 @RequiredArgsConstructor
 @Getter
-public enum Order {
+public enum OrderType {
     TARGET("target"),
     Type("type");
     private final String stringOrder;
-    public static Order getEnumOrderFromStringOrder(String stringOrder) {
+    public static OrderType getEnumOrderFromStringOrder(String stringOrder) {
         return Arrays.stream(values())
                 .filter(order -> order.stringOrder.equals(stringOrder))
                 .findFirst()

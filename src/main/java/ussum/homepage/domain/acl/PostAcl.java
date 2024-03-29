@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import ussum.homepage.infra.jpa.acl.entity.Action;
-import ussum.homepage.infra.jpa.acl.entity.Order;
+import ussum.homepage.infra.jpa.acl.entity.OrderType;
 import ussum.homepage.infra.jpa.acl.entity.Target;
 import ussum.homepage.infra.jpa.acl.entity.Type;
 
@@ -22,8 +22,8 @@ public class PostAcl {
                               Target target,
                               Type type,
                               Action action,
-                              Order order,
+                              OrderType orderType,
                               Long postId){
-        return new PostAcl(id, String.valueOf(target),String.valueOf(type), String.valueOf(action), String.valueOf(order), postId);
+        return new PostAcl(id, String.valueOf(target),String.valueOf(type), String.valueOf(action), String.valueOf(orderType), postId);
     }
 }

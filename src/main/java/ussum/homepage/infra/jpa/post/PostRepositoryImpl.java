@@ -25,5 +25,8 @@ public class PostRepositoryImpl implements PostRepository {
         return postJpaRepository.findById(postId).map(postMapper::toDomain);
     }
 
-
+    @Override
+    public List<Post> findByBoard(Long boardId) {
+        return postJpaRepository.findAllByBoardId(boardId).stream().map(postMapper::toDomain).toList();
+    }
 }
