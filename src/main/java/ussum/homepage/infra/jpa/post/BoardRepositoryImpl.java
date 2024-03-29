@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ussum.homepage.domain.post.Board;
 import ussum.homepage.domain.post.BoardRepository;
 import ussum.homepage.infra.jpa.post.entity.BoardCode;
+import ussum.homepage.infra.jpa.post.entity.BoardEntity;
 import ussum.homepage.infra.jpa.post.repository.BoardJpaRepository;
 
 import java.util.List;
@@ -34,6 +35,8 @@ public class BoardRepositoryImpl implements BoardRepository {
     }
     @Override
     public void delete(Board board){
-        boardJpaRepository.delete(boardMapper.toEntity(board));
+        BoardEntity boardEntity = boardJpaRepository.findById(board.getId()).orElseThrow();
+        boardJpaRepository.delete(boardEntity);
+//        boardJpaRepository.delete(boardMapper.toEntity(board));
     }
 }

@@ -11,8 +11,8 @@ import static ussum.homepage.global.error.status.ErrorStatus.INVALID_ROLE;
 @RequiredArgsConstructor
 @Getter
 public enum Role {
-    ADMIN("admin"),
-    USER("user");
+    ADMIN("ADMIN"),
+    USER("USER");
     private final String stringRole;
     public static Role getEnumRoleFromStringRole(String stringRole) {
         return Arrays.stream(values())

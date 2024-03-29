@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ussum.homepage.domain.acl.BoardAcl;
 import ussum.homepage.domain.acl.BoardAclRepository;
+import ussum.homepage.infra.jpa.acl.entity.BoardAclEntity;
 import ussum.homepage.infra.jpa.acl.repository.BoardAclJpaRepository;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class BoardAclRepositoryImpl implements BoardAclRepository {
     }
     @Override
     public void delete(BoardAcl boardAcl){
-        boardAclJpaRepository.delete(aclMapper.toEntity(boardAcl));
+        BoardAclEntity boardAclEntity = aclMapper.toEntity(boardAcl);
+        boardAclJpaRepository.delete(boardAclEntity);
     }
 }

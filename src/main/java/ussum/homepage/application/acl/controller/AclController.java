@@ -31,9 +31,9 @@ public class AclController {
         BoardAclResponse acl = aclService.editBoardAcl(boardAclId, boardAclUpdateRequest);
         return ApiResponse.onSuccess(acl);
     }
-    @DeleteMapping("/boards/:boardCode/acls/:boardAclId")
-    public ApiResponse<?> deleteBoardAcl(@PathVariable(name = ":boardCode") String boarderCode, @PathVariable(name = ":boardAclId") Long boardAclId) {
-        aclService.deleteBoardAcl(boarderCode, boardAclId);
+    @DeleteMapping("/boards/{boardCode}/acls/{boardAclId}")
+    public ApiResponse<?> deleteBoardAcl(@PathVariable(name = "boardCode") String boarderCode, @PathVariable(name = "boardAclId") Long boardAclId) {
+        aclService.deleteBoardAcl(boardAclId);
         return ApiResponse.onSuccess(null);
     }
 }

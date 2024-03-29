@@ -10,8 +10,8 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 @Getter
 public enum Target {
-    EVERYONE("everyone"),
-    ANONYMOUS("anonymous");
+    EVERYONE("EVERYONE"),
+    ANONYMOUS("ANONYMOUS");
     private final String stringTarget;
     public static Target getEnumTargetFromStringTarget(String stringTarget) {
         return Arrays.stream(values())

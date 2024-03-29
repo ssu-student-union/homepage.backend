@@ -16,7 +16,7 @@ public record BoardAclCreateRequest(
                 target,
                 type,
                 action,
-                null,
+                "NONE",
                 boardId
         );
     }

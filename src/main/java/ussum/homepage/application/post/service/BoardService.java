@@ -43,6 +43,7 @@ public class BoardService {
                 boardModifier.updateBoard(boardCode, boardUpdateRequest).getId()
         );
     }
+    @Transactional
     public void deleteBoard(String boardCode){
         boardModifier.deleteBoard(boardCode);
     }
