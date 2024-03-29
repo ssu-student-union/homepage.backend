@@ -1,45 +1,55 @@
 package ussum.homepage.application.post.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+import ussum.homepage.application.post.service.PostService;
+import ussum.homepage.application.post.service.dto.response.PostListResponse;
 import ussum.homepage.global.ApiResponse;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/boards")
 public class PostController {
+    private final PostService postService;
 
-    @GetMapping("/{boardcodeid}/posts/{postid}")
+    @GetMapping("/:boardCode/posts/")
+    public ApiResponse<PostListResponse> getBoardPostsList(Pageable pageable,
+                                                                 @PathVariable(name = ":boardCode") String boardCode) {
+
+//        PostListResponse postList = postService.getPostList(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id").descending()), boardCode);
+        PostListResponse postList = postService.getPostList(pageable, boardCode);
+        return ApiResponse.onSuccess(postList);
+    }
+
+    @GetMapping("/:boardCode/posts/:postId")
     public ApiResponse<?> getBoardPost() {
 
         return null;
     }
 
-    @GetMapping("/{boardcode}/posts/")
-    public ApiResponse<?> getBoardPostsList() {
-
-        return null;
-    }
-
-    @PostMapping("/{boardcode}/posts")
+    @PostMapping("/:boardCode/posts")
     public ApiResponse<?> createBoardPost() {
 
         return null;
     }
 
-    @PatchMapping("/{boardcode}/posts/{postid}")
+    @PatchMapping("/:boardCode/posts/:postId")
     public ApiResponse<?> editBoardPost() {
 
         return null;
     }
 
-    @DeleteMapping("/{boardcodeid}/posts/{postid}")
+    @DeleteMapping("/:boardCode/posts/:postId")
     public ApiResponse<?> deleteBoardPost() {
 
         return null;
     }
 
-    @GetMapping("/{boardcodeid}/posts/search")
+    @GetMapping("/:boardCode/posts/search")
     public ApiResponse<?> searchBoardPost() {
 
         return null;

@@ -1,11 +1,13 @@
 package ussum.homepage.application.post.service.dto.response;
 
+import ussum.homepage.application.post.service.dto.BoardResponse;
+import ussum.homepage.application.user.service.dto.response.UserResponse;
 import ussum.homepage.domain.post.Post;
 
 import java.time.LocalDateTime;
 
 public record PostResponse(
-        String id,
+        Long id,
         BoardResponse board,
         CategoryResponse category,
         UserResponse user,
@@ -15,7 +17,7 @@ public record PostResponse(
         String thumbNailImage,
         LocalDateTime lastEditedAt
 ) {
-    public static PostResponse of(Post post,BoardRespose board,CategoryResponse category,UserRespose user) {
+    public static PostResponse of(Post post,BoardResponse board,CategoryResponse category,UserResponse user) {
         return new PostResponse(
                 post.getId(),
                 board,

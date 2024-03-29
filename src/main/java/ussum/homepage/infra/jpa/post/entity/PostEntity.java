@@ -38,4 +38,9 @@ public class PostEntity extends BoardEntity{
     public static PostEntity from(Long id){
         return new PostEntity(id,null,null,null,null,null,null,null,null,null,null);
     }
+
+    public static PostEntity of(Long id, String title, String content, Integer viewCount, String thumbnailImage, List<String> additionalData,
+                                LocalDateTime lastEditedAt, LocalDateTime deletedAt, UserEntity user, BoardEntity board, CategoryEntity category) {
+        return new PostEntity(id, title, content, viewCount, thumbnailImage, additionalData, lastEditedAt, deletedAt, user, board, category);
+    }
 }
