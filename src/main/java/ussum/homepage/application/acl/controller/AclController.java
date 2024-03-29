@@ -17,17 +17,17 @@ public class AclController {
     private final AclService aclService;
 
     @GetMapping("/boards/{boardCode}/acls")
-    public ApiResponse<List<BoardAclResponse>> getBoardAcls(@PathVariable(name = ":boardCode") String boardCode) {
+    public ApiResponse<List<BoardAclResponse>> getBoardAcls(@PathVariable(name = "boardCode") String boardCode) {
         List<BoardAclResponse> acls = aclService.getBoardAclList(boardCode);
         return ApiResponse.onSuccess(acls);
     }
     @PostMapping("/boards/{boardCode}/acls")
-    public ApiResponse<BoardAclResponse> createBoardAcl(@PathVariable(name = ":boardCode") String boardCode,@RequestBody BoardAclCreateRequest boardAclCreateRequest) {
+    public ApiResponse<BoardAclResponse> createBoardAcl(@PathVariable(name = "boardCode") String boardCode,@RequestBody BoardAclCreateRequest boardAclCreateRequest) {
         BoardAclResponse acl = aclService.createBoardAcl(boardCode, boardAclCreateRequest);
         return ApiResponse.onSuccess(acl);
     }
     @PatchMapping("/boards/{boardCode}/acls/{boardAclId}")
-    public ApiResponse<BoardAclResponse> editBoardAcl(@PathVariable(name = ":boardAclId") Long boardAclId,@RequestBody BoardAclUpdateRequest boardAclUpdateRequest) {
+    public ApiResponse<BoardAclResponse> editBoardAcl(@PathVariable(name = "boardAclId") Long boardAclId,@RequestBody BoardAclUpdateRequest boardAclUpdateRequest) {
         BoardAclResponse acl = aclService.editBoardAcl(boardAclId, boardAclUpdateRequest);
         return ApiResponse.onSuccess(acl);
     }
