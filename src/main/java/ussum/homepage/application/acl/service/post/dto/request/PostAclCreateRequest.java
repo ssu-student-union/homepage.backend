@@ -14,9 +14,9 @@ public record PostAclCreateRequest(
     public PostAcl toDomain(Long postId) {
         return PostAcl.of(
                 null,
-                Target.getEnumTargetFromStringTarget(target),
-                Type.getEnumTypeFromStringType(type),
-                Action.getEnumActionFromStringAction(action),
+                target,
+                type,
+                action,
                 null,
                 postId);
     }
