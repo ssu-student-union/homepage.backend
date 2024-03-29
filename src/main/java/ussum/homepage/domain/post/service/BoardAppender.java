@@ -20,7 +20,7 @@ public class BoardAppender {
     @Transactional
     public void createBoard(Board board, List<BoardAcl> boardAclList){
         Board saveBoard = boardRepository.save(board);
-        boardAclList.stream().map(boardAcl ->
+        boardAclList.stream().forEach(boardAcl ->
                 aclAppender.appendBoardAcl(
                         BoardAcl.of(
                                 boardAcl.getId(),

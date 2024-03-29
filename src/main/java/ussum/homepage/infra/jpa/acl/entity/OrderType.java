@@ -15,6 +15,9 @@ public enum OrderType {
     Type("type");
     private final String stringOrder;
     public static OrderType getEnumOrderFromStringOrder(String stringOrder) {
+        if (stringOrder == null) {
+            return null;
+        }
         return Arrays.stream(values())
                 .filter(order -> order.stringOrder.equals(stringOrder))
                 .findFirst()
