@@ -15,7 +15,7 @@ public record PostResponse(
         String content,
         Integer viewCount,
         String thumbNailImage,
-        LocalDateTime lastEditedAt
+        String lastEditedAt
 ) {
     public static PostResponse of(Post post,BoardResponse board,CategoryResponse category,UserResponse user) {
         return new PostResponse(

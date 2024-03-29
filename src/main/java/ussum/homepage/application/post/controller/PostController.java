@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import ussum.homepage.application.post.service.PostService;
+import ussum.homepage.application.post.service.dto.request.PostCreateRequest;
 import ussum.homepage.application.post.service.dto.response.PostListResponse;
 import ussum.homepage.application.post.service.dto.response.PostResponse;
 import ussum.homepage.global.ApiResponse;
@@ -34,9 +35,10 @@ public class PostController {
     }
 
     @PostMapping("/:boardCode/posts")
-    public ApiResponse<?> createBoardPost() {
-
-        return null;
+    public ApiResponse<?> createBoardPost(@PathVariable(name = ":boardCode") String boardCode,
+                                          @RequestBody PostCreateRequest postCreateRequest) {
+        postService.createPost(boardCode,postCreateRequest);
+        return ApiResponse.onSuccess(null);
     }
 
     @PatchMapping("/:boardCode/posts/:postId")

@@ -14,7 +14,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class PostEntity extends BaseEntity {
+public class
+PostEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,9 +23,9 @@ public class PostEntity extends BaseEntity {
     private String content;
     private Integer viewCount;
     private String thumbnailImage;
-    @Column(name = "additional_data", columnDefinition = "json")
-    @JdbcTypeCode(SqlTypes.JSON)
-    private List<String> additionalData;
+//    @Column(name = "additional_data", columnDefinition = "json")
+//    @JdbcTypeCode(SqlTypes.JSON)
+//    private List<String> additionalData;
     private LocalDateTime lastEditedAt;
     private LocalDateTime deletedAt;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,11 +39,11 @@ public class PostEntity extends BaseEntity {
     private CategoryEntity categoryEntity;
 
     public static PostEntity from(Long id){
-        return new PostEntity(id,null,null,null,null,null,null,null,null,null,null);
+        return new PostEntity(id,null,null,null,null,null,null,null,null,null);
     }
 
-    public static PostEntity of(Long id, String title, String content, Integer viewCount, String thumbnailImage, List<String> additionalData,
+    public static PostEntity of(Long id, String title, String content, Integer viewCount, String thumbnailImage, /**List<String> additionalData,**/
                                 LocalDateTime lastEditedAt, LocalDateTime deletedAt, UserEntity user, BoardEntity board, CategoryEntity category) {
-        return new PostEntity(id, title, content, viewCount, thumbnailImage, additionalData, lastEditedAt, deletedAt, user, board, category);
+        return new PostEntity(id, title, content, viewCount, thumbnailImage, /**additionalData,**/ lastEditedAt, deletedAt, user, board, category);
     }
 }

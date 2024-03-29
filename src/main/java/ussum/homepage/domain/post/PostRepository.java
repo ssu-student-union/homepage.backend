@@ -11,4 +11,5 @@ public interface PostRepository {
     Page<Post> findAllWithBoard(Pageable pageable, String boardCode);
     Optional<Post> findByBoardIdAndId(Long boardId,Long postId);
     List<Post> findByBoard(Long postId);
+    Post save(Post post);
 }

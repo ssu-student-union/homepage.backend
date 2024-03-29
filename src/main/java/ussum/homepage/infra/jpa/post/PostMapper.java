@@ -6,7 +6,13 @@ import ussum.homepage.domain.post.Category;
 import ussum.homepage.domain.post.Post;
 import ussum.homepage.domain.user.User;
 import ussum.homepage.infra.jpa.post.entity.BoardCode;
+import ussum.homepage.infra.jpa.post.entity.BoardEntity;
+import ussum.homepage.infra.jpa.post.entity.CategoryEntity;
 import ussum.homepage.infra.jpa.post.entity.PostEntity;
+import ussum.homepage.infra.jpa.user.entity.UserEntity;
+
+import java.time.LocalDateTime;
+
 @Component
 public class PostMapper {
     public Post toDomain(PostEntity postEntity){
@@ -16,7 +22,7 @@ public class PostMapper {
                 postEntity.getContent(),
                 postEntity.getViewCount(),
                 postEntity.getThumbnailImage(),
-                postEntity.getAdditionalData(),
+//                postEntity.getAdditionalData(),
                 postEntity.getCreatedAt(),
                 postEntity.getUpdatedAt(),
                 postEntity.getLastEditedAt(),
@@ -27,20 +33,20 @@ public class PostMapper {
         );
     }
 
-    public PostEntity toEntity(Post post) {
-        PostEntity from = PostEntity.from(post.getId());
+    public PostEntity toEntity(Post post, UserEntity user, BoardEntity board, CategoryEntity category) {
+//        PostEntity from = PostEntity.from(post.getId());
         return PostEntity.of(
                 post.getId(),
                 post.getTitle(),
                 post.getContent(),
                 post.getViewCount(),
                 post.getThumbnailImage(),
-                post.getAdditionalData(),
-                post.getLastEditedAt(),
-                post.getDeletedAt(),
-                from.getUserEntity(),
-                from.getBoardEntity(),
-                from.getCategoryEntity());
+//                post.getAdditionalData(),
+                LocalDateTime.parse(post.getCreatedAt()),
+                LocalDateTime.parse(post.getUpdatedAt()),
+                user,
+                board,
+                category
+        );
     }
-
 }
