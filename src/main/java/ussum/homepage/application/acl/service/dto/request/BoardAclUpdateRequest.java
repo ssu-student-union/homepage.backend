@@ -13,9 +13,9 @@ public record BoardAclUpdateRequest(
     public BoardAcl toDomain(Long boardAclId, Long boardId){
         return BoardAcl.of(
                 boardAclId,
-                Target.getEnumTargetFromStringTarget(target),
-                Type.getEnumTypeFromStringType(type),
-                Action.getEnumActionFromStringAction(action),
+                target,
+                type,
+                action,
                 null,
                 boardId
         );

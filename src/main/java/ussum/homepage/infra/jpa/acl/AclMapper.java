@@ -17,7 +17,7 @@ public class AclMapper {
                 String.valueOf(boardAclEntity.getTarget()),
                 String.valueOf(boardAclEntity.getType()),
                 String.valueOf(boardAclEntity.getAction()),
-                String.valueOf(boardAclEntity.getOrder()),
+                String.valueOf(boardAclEntity.getOrderType()),
                 boardAclEntity.getBoardEntity().getId()
         );
     }
@@ -28,7 +28,7 @@ public class AclMapper {
                 String.valueOf(postAclEntity.getTarget()),
                 String.valueOf(postAclEntity.getType()),
                 String.valueOf(postAclEntity.getAction()),
-                String.valueOf(postAclEntity.getOrder()),
+                String.valueOf(postAclEntity.getOrderType()),
                 postAclEntity.getPostEntity().getId()
         );
     }
@@ -38,7 +38,7 @@ public class AclMapper {
                 Target.getEnumTargetFromStringTarget(boardAcl.getTarget()),
                 Type.getEnumTypeFromStringType(boardAcl.getType()),
                 Action.getEnumActionFromStringAction(boardAcl.getAction()),
-                Order.getEnumOrderFromStringOrder(boardAcl.getOrder()),
+                OrderType.getEnumOrderFromStringOrder(boardAcl.getOrder()),
                 BoardEntity.from(boardAcl.getBoardId())
         );
     }
@@ -49,7 +49,7 @@ public class AclMapper {
                 Target.getEnumTargetFromStringTarget(postAcl.getTarget()),
                 Type.getEnumTypeFromStringType(postAcl.getType()),
                 Action.getEnumActionFromStringAction(postAcl.getAction()),
-                Order.getEnumOrderFromStringOrder(postAcl.getOrder()),
+                OrderType.getEnumOrderFromStringOrder(postAcl.getOrder()),
                 PostEntity.from(postAcl.getPostId())
         );
     }

@@ -15,7 +15,7 @@ public record BoardCreateRequest(
     public Board toDomain(){
         return Board.of(
                 null,
-                BoardCode.getEnumBoardCodeFromStringBoardCode(boardCode),
+                boardCode,
                 name,
                 null,
                 null

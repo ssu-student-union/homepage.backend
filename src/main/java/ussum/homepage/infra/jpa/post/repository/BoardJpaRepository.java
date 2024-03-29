@@ -9,5 +9,4 @@ import java.util.Optional;
 
 public interface BoardJpaRepository extends JpaRepository<BoardEntity, Long> {
     Optional<BoardEntity> findByBoardCode(BoardCode boardCode);
-    List<String> findIdAll(Long boardId);
 }

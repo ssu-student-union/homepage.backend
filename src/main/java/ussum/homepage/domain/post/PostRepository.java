@@ -8,8 +8,7 @@ import java.util.Optional;
 
 public interface PostRepository {
     Optional<Post> findById(Long postId);
-
     Page<Post> findAllWithBoard(Pageable pageable, String boardCode);
-
     Optional<Post> findByBoardIdAndId(Long boardId,Long postId);
+    List<Post> findByBoard(Long postId);
 }

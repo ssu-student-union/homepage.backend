@@ -2,7 +2,6 @@ package ussum.homepage.application.acl.service.post.dto.request;
 
 import ussum.homepage.domain.acl.PostAcl;
 import ussum.homepage.infra.jpa.acl.entity.Action;
-import ussum.homepage.infra.jpa.acl.entity.Order;
 import ussum.homepage.infra.jpa.acl.entity.Target;
 import ussum.homepage.infra.jpa.acl.entity.Type;
 

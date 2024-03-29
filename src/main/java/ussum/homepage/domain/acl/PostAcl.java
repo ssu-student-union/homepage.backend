@@ -3,10 +3,6 @@ package ussum.homepage.domain.acl;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import ussum.homepage.infra.jpa.acl.entity.Action;
-import ussum.homepage.infra.jpa.acl.entity.Order;
-import ussum.homepage.infra.jpa.acl.entity.Target;
-import ussum.homepage.infra.jpa.acl.entity.Type;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
