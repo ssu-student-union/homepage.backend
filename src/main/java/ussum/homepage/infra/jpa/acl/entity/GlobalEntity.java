@@ -20,5 +20,5 @@ public class GlobalEntity {
     @Enumerated(EnumType.STRING)
     private Action action;
     @Enumerated(EnumType.STRING)
-    private Order order;
+    private OrderType orderType;
 }
