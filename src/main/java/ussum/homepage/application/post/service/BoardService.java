@@ -38,6 +38,7 @@ public class BoardService {
                 boardReader.getBoardWithBoardCode(boardCode).getId()
         );
     }
+    @Transactional
     public BoardResponse editBoard(String boardCode, BoardUpdateRequest boardUpdateRequest){
         return boardFormatter.format(
                 boardModifier.updateBoard(boardCode, boardUpdateRequest).getId()
