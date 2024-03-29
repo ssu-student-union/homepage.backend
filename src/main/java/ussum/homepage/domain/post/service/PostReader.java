@@ -17,6 +17,6 @@ public class PostReader {
     private final PostRepository postRepository;
 
     public List<Post> getPostWithBoard(Board board){
-        return postRepository.findByBoard(board.getId()).orElseThrow(()-> new GeneralException(POST_NOT_FOUND));
+        return postRepository.findByBoard(board.getId());
     }
 }

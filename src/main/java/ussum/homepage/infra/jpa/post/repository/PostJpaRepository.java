@@ -10,4 +10,5 @@ import java.util.Optional;
 
 public interface PostJpaRepository extends JpaRepository<PostEntity,Long> {
     List<PostEntity> findAllPostByBoard(Board board);
+    List<PostEntity> findAllByBoardId(Long boardId);
 }
