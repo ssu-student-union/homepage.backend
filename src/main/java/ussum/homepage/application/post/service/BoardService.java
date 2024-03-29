@@ -38,11 +38,13 @@ public class BoardService {
                 boardReader.getBoardWithBoardCode(boardCode).getId()
         );
     }
+    @Transactional
     public BoardResponse editBoard(String boardCode, BoardUpdateRequest boardUpdateRequest){
         return boardFormatter.format(
                 boardModifier.updateBoard(boardCode, boardUpdateRequest).getId()
         );
     }
+    @Transactional
     public void deleteBoard(String boardCode){
         boardModifier.deleteBoard(boardCode);
     }

@@ -11,8 +11,8 @@ import static ussum.homepage.global.error.status.ErrorStatus.INVALID_MAJORCODE;
 @RequiredArgsConstructor
 @Getter
 public enum MajorCode {
-    IT("it"),
-    ET("et");
+    IT("IT"),
+    ET("ET");
     private final String stringMajorCode;
     public static MajorCode getEnumMajorCodeFromStringMajorCode(String stringMajorCode) {
         return Arrays.stream(values())

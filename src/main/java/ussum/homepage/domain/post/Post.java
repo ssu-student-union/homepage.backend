@@ -22,7 +22,6 @@ public class Post {
     private String content;
     private Integer viewCount;
     private String thumbnailImage;
-    private List<String> additionalData;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime lastEditedAt;
@@ -36,7 +35,6 @@ public class Post {
                           String content,
                           Integer viewCount,
                           String thumbnailImage,
-                          List<String> additionalData,
                           LocalDateTime createdAt,
                           LocalDateTime updatedAt,
                           LocalDateTime lastEditedAt,
@@ -44,6 +42,6 @@ public class Post {
                           Long userId,
                           Long boardId,
                           Long categoryId) {
-        return new Post(id, title, content, viewCount, thumbnailImage, additionalData, createdAt, updatedAt, lastEditedAt, deletedAt, userId, boardId, categoryId);
+        return new Post(id, title, content, viewCount, thumbnailImage, createdAt, updatedAt, lastEditedAt, deletedAt, userId, boardId, categoryId);
     }
 }

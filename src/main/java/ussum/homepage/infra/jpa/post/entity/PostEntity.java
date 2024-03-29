@@ -22,9 +22,6 @@ public class PostEntity extends BaseEntity {
     private String content;
     private Integer viewCount;
     private String thumbnailImage;
-    @Column(name = "additional_data", columnDefinition = "json")
-    @JdbcTypeCode(SqlTypes.JSON)
-    private List<String> additionalData;
     private LocalDateTime lastEditedAt;
     private LocalDateTime deletedAt;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,6 +35,6 @@ public class PostEntity extends BaseEntity {
     private CategoryEntity categoryEntity;
 
     public static PostEntity from(Long id){
-        return new PostEntity(id,null,null,null,null,null,null,null,null,null,null);
+        return new PostEntity(id,null,null,null,null,null,null,null,null,null);
     }
 }

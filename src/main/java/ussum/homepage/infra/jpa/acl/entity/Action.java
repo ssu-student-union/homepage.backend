@@ -11,13 +11,13 @@ import static ussum.homepage.global.error.status.ErrorStatus.INVALID_ACTION;
 @RequiredArgsConstructor
 @Getter
 public enum Action {
-    LIST("list"),
-    EDIT("edit"),
-    READ("read"),
-    EDIT_PROPERTIES("edit_properties"),
-    DELETE("delete"),
-    COMMENT("comment"),
-    REACTION("reaction");
+    LIST("LIST"),
+    EDIT("EDIT"),
+    READ("READ"),
+    EDIT_PROPERTIES("EDIT_PROPERTIES"),
+    DELETE("DELETE"),
+    COMMENT("COMMENT"),
+    REACTION("REACTION");
     private final String stringAction;
     public static Action getEnumActionFromStringAction(String stringAction) {
         return Arrays.stream(values())

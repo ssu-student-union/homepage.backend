@@ -12,7 +12,6 @@ public class PostMapper {
                 postEntity.getContent(),
                 postEntity.getViewCount(),
                 postEntity.getThumbnailImage(),
-                postEntity.getAdditionalData(),
                 postEntity.getCreatedAt(),
                 postEntity.getUpdatedAt(),
                 postEntity.getLastEditedAt(),
