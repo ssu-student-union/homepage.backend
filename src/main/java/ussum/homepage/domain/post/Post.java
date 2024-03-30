@@ -22,11 +22,10 @@ public class Post {
     private String content;
     private Integer viewCount;
     private String thumbnailImage;
-//    private List<String> additionalData;
-    private String createdAt;
-    private String updatedAt;
-    private String lastEditedAt;
-    private String deletedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private LocalDateTime lastEditedAt;
+    private LocalDateTime deletedAt;
     private Long userId;
     private Long boardId;
     private Long categoryId;
@@ -36,7 +35,6 @@ public class Post {
                           String content,
                           Integer viewCount,
                           String thumbnailImage,
-                          /**List<String> additionalData,**/
                           LocalDateTime createdAt,
                           LocalDateTime updatedAt,
                           LocalDateTime lastEditedAt,
@@ -44,8 +42,6 @@ public class Post {
                           Long userId,
                           Long boardId,
                           Long categoryId) {
-        return new Post(id, title, content, viewCount, thumbnailImage, /**additionalData,**/
-                String.valueOf(createdAt), String.valueOf(updatedAt), String.valueOf(lastEditedAt), String.valueOf(deletedAt)
-                , userId, boardId, categoryId);
+        return new Post(id, title, content, viewCount, thumbnailImage, createdAt, updatedAt, lastEditedAt, deletedAt, userId, boardId, categoryId);
     }
 }

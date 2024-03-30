@@ -18,42 +18,42 @@ import ussum.homepage.global.ApiResponse;
 public class PostController {
     private final PostService postService;
 
-    @GetMapping("/:boardCode/posts/")
+    @GetMapping("/{boardCode}/posts/")
     public ApiResponse<PostListResponse> getBoardPostsList(Pageable pageable,
-                                                                 @PathVariable(name = ":boardCode") String boardCode) {
+                                                           @PathVariable(name = "boardCode") String boardCode) {
 
 //        PostListResponse postList = postService.getPostList(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id").descending()), boardCode);
         PostListResponse postList = postService.getPostList(pageable, boardCode);
         return ApiResponse.onSuccess(postList);
     }
 
-    @GetMapping("/:boardCode/posts/:postId")
-    public ApiResponse<PostResponse> getBoardPost(@PathVariable(name = ":boardCode") String boardCode,
-                                                  @PathVariable(name = ":postId") Long postId) {
+    @GetMapping("/{boardCode}/posts/{postId}")
+    public ApiResponse<PostResponse> getBoardPost(@PathVariable(name = "boardCode") String boardCode,
+                                                  @PathVariable(name = "postId") Long postId) {
 
         return ApiResponse.onSuccess(postService.getPost(boardCode, postId));
     }
 
-    @PostMapping("/:boardCode/posts")
-    public ApiResponse<?> createBoardPost(@PathVariable(name = ":boardCode") String boardCode,
+    @PostMapping("/{boardCode}/posts")
+    public ApiResponse<?> createBoardPost(@PathVariable(name = "boardCode") String boardCode,
                                           @RequestBody PostCreateRequest postCreateRequest) {
         postService.createPost(boardCode,postCreateRequest);
         return ApiResponse.onSuccess(null);
     }
 
-    @PatchMapping("/:boardCode/posts/:postId")
+    @PatchMapping("/{boardCode}/posts/{postId}")
     public ApiResponse<?> editBoardPost() {
 
         return null;
     }
 
-    @DeleteMapping("/:boardCode/posts/:postId")
+    @DeleteMapping("/{boardCode}/posts/{postId}")
     public ApiResponse<?> deleteBoardPost() {
 
         return null;
     }
 
-    @GetMapping("/:boardCode/posts/search")
+    @GetMapping("/{boardCode}/posts/search")
     public ApiResponse<?> searchBoardPost() {
 
         return null;

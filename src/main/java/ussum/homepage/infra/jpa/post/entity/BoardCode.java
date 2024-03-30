@@ -12,8 +12,8 @@ import static ussum.homepage.global.error.status.ErrorStatus.INVALID_BOARDCODE;
 @RequiredArgsConstructor
 @Getter
 public enum BoardCode {
-    FREE("free"),
-    청원("청원");
+    FREE("FREE"),
+    TEST("TEST");
     private final String stringBoardCode;
     public static BoardCode getEnumBoardCodeFromStringBoardCode(String stringBoardCode) {
         return Arrays.stream(values())

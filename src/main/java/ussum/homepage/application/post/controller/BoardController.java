@@ -26,17 +26,17 @@ public class BoardController {
         boardService.createBoard(boardCreateRequest);
         return ApiResponse.onSuccess(null);
     }
-    @GetMapping("/:boardCode")
-    public ApiResponse<BoardResponse> getBoard(@PathVariable(name = "boardCode")String boardCode) {
+    @GetMapping("/{boardCode}")
+    public ApiResponse<BoardResponse> getBoardList(@PathVariable(name = "boardCode")String boardCode) {
         BoardResponse board = boardService.getBoard(boardCode);
         return ApiResponse.onSuccess(board);
     }
-    @PatchMapping("/:boardCode")
+    @PatchMapping("/{boardCode}")
     public ApiResponse<BoardResponse> editBoard(@PathVariable(name = "boardCode")String boardCode,@RequestBody BoardUpdateRequest boardUpdateRequest) {
         BoardResponse board = boardService.editBoard(boardCode, boardUpdateRequest);
         return ApiResponse.onSuccess(board);
     }
-    @DeleteMapping("/:boardCode")
+    @DeleteMapping("/{boardCode}")
     public ApiResponse<BoardResponse> deleteBoard(@PathVariable(name = "boardCode")String boardCode) {
         boardService.deleteBoard(boardCode);
         return ApiResponse.onSuccess(null);

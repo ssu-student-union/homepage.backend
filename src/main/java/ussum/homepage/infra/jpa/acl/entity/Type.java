@@ -12,8 +12,8 @@ import static ussum.homepage.global.error.status.ErrorStatus.INVALID_TYPE;
 @RequiredArgsConstructor
 @Getter
 public enum Type {
-    ALLOW("allow"),
-    DENY("deny");
+    ALLOW("ALLOW"),
+    DENY("DENY");
     private final String stringType;
     public static Type getEnumTypeFromStringType(String stringType) {
         return Arrays.stream(values())

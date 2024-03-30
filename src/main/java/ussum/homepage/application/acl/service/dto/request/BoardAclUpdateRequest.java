@@ -16,7 +16,7 @@ public record BoardAclUpdateRequest(
                 target,
                 type,
                 action,
-                null,
+                "NONE",
                 boardId
         );
     }

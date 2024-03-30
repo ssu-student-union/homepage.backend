@@ -46,13 +46,14 @@ public class AclService {
         BoardAcl boardAcl = aclAppender.appendBoardAcl(boardAclCreateRequest.toDomain(board.getId()));
         return BoardAclResponse.of(boardAcl);
     }
-  
+    @Transactional
     public BoardAclResponse editBoardAcl(Long boardAclId, BoardAclUpdateRequest boardAclUpdateRequest){
         BoardAcl boardAcl = aclReader.getBoardAcl(boardAclId);
         return BoardAclResponse.of(aclModifier.updateBoardAcl(boardAclId, boardAcl, boardAclUpdateRequest));
     }
-    public void deleteBoardAcl(String boardCode, Long boardAclId){
-        aclModifier.deleteBoardAcl(boardCode, boardAclId);
+    @Transactional
+    public void deleteBoardAcl(Long boardAclId){
+        aclModifier.deleteBoardAcl(boardAclId);
 
     }
 }
