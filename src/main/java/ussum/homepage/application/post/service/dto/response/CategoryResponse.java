@@ -7,15 +7,13 @@ import java.time.LocalDateTime;
 public record CategoryResponse(
         Long id,
         String majorCode,
-        String name,
-        String createdAt
+        String name
 ) {
     public static CategoryResponse of(Category category) {
         return new CategoryResponse(
                 category.getId(),
                 category.getMajorCode(),
-                category.getName(),
-                category.getCreatedAt()
+                category.getName()
         );
 
     }
