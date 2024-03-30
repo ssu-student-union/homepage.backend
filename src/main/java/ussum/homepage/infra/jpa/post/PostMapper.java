@@ -34,17 +34,20 @@ public class PostMapper {
 
     public PostEntity toEntity(Post post, UserEntity user, BoardEntity board, CategoryEntity category) {
 //        PostEntity from = PostEntity.from(post.getId());
+        LocalDateTime lastEditedAt = LocalDateTime.parse(post.getLastEditedAt());
+        LocalDateTime deletedAt = LocalDateTime.parse(post.getDeletedAt());
         return PostEntity.of(
                 post.getId(),
                 post.getTitle(),
                 post.getContent(),
                 post.getViewCount(),
                 post.getThumbnailImage(),
-                post.getCreatedAt(),
-                post.getUpdatedAt(),
+                lastEditedAt,
+                deletedAt,
                 user,
                 board,
                 category
         );
     }
+
 }

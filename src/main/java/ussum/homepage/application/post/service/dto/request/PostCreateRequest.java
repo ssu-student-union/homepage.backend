@@ -23,11 +23,11 @@ public record PostCreateRequest(
                 content,
                 0,
                 thumbNailImage,
-                LocalDateTime.now(),
-                LocalDateTime.now(),
                 null,
                 null,
                 null,
+                null,
+                null, //이건 채워넣어야 함, user쪽 개발되면
                 board.getId(),
                 category.getId()
         );

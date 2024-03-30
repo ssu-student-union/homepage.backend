@@ -22,10 +22,10 @@ public class Post {
     private String content;
     private Integer viewCount;
     private String thumbnailImage;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private LocalDateTime lastEditedAt;
-    private LocalDateTime deletedAt;
+    private String createdAt;
+    private String updatedAt;
+    private String lastEditedAt;
+    private String deletedAt;
     private Long userId;
     private Long boardId;
     private Long categoryId;
@@ -42,6 +42,8 @@ public class Post {
                           Long userId,
                           Long boardId,
                           Long categoryId) {
-        return new Post(id, title, content, viewCount, thumbnailImage, createdAt, updatedAt, lastEditedAt, deletedAt, userId, boardId, categoryId);
+        return new Post(id, title, content, viewCount, thumbnailImage, String.valueOf(createdAt),
+                String.valueOf(updatedAt), String.valueOf(lastEditedAt), String.valueOf(deletedAt),
+                userId, boardId, categoryId);
     }
 }

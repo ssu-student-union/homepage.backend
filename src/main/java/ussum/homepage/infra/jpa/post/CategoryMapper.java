@@ -15,7 +15,9 @@ public class CategoryMapper {
                 categoryEntity.getId(),
                 String.valueOf(categoryEntity.getMajorCode()),
                 categoryEntity.getName(),
-                categoryEntity.getBoardEntity().getId()
+                categoryEntity.getBoardEntity().getId(),
+                categoryEntity.getCreatedAt(),
+                categoryEntity.getUpdatedAt()
         );
     }
 

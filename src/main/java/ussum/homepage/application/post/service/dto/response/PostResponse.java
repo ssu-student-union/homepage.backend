@@ -27,7 +27,7 @@ public record PostResponse(
                 post.getContent(),
                 post.getViewCount(),
                 post.getThumbnailImage(),
-                post.getLastEditedAt()
+                String.valueOf(post.getLastEditedAt())
         );
     }
 
