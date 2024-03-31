@@ -74,4 +74,18 @@ public class PostRepositoryImpl implements PostRepository {
                 postJpaRepository.save(postMapper.toEntity(post, userEntity, boardEntity, categoryEntity))
         );
     }
+
+    @Override
+    public void delete(Post post) {
+        UserEntity userEntity = userJpaRepository.findById(post.getUserId())
+                .orElseThrow(() -> new GeneralException(USER_NOT_FOUND));
+
+        BoardEntity boardEntity = boardJpaRepository.findById(post.getBoardId())
+                .orElseThrow(() -> new GeneralException(BOARD_NOT_FOUND));
+
+        CategoryEntity categoryEntity = categoryJpaRepository.findById(post.getCategoryId())
+                .orElseThrow(() -> new GeneralException(CATEGORY_NOT_FOUND));
+
+        postJpaRepository.delete(postMapper.toEntity(post, userEntity, boardEntity, categoryEntity));
+    }
 }

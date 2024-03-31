@@ -12,4 +12,5 @@ public interface PostRepository {
     Optional<Post> findByBoardIdAndId(Long boardId,Long postId);
     List<Post> findByBoard(Long postId);
     Post save(Post post);
+    void delete(Post post);
 }

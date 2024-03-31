@@ -26,4 +26,8 @@ public class PostModifier {
         );
     }
 
+    public void deletePost(String boardCode, Long postId) {
+        postRepository.delete(postReader.getPostWithBoardCode(boardCode, postId));
+    }
+
 }

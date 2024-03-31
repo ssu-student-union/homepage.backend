@@ -60,4 +60,9 @@ public class PostService {
         );
     }
 
+    @Transactional
+    public void deletePost(String boardCode,Long postId){
+        postModifier.deletePost(boardCode, postId);
+    }
+
 }
