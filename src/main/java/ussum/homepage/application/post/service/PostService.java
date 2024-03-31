@@ -5,7 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ussum.homepage.application.post.service.dto.BoardResponse;
+import ussum.homepage.application.post.service.dto.request.BoardUpdateRequest;
 import ussum.homepage.application.post.service.dto.request.PostCreateRequest;
+import ussum.homepage.application.post.service.dto.request.PostUpdateRequest;
 import ussum.homepage.application.post.service.dto.response.PostListResponse;
 import ussum.homepage.application.post.service.dto.response.PostResponse;
 import ussum.homepage.domain.post.Board;
@@ -25,6 +28,7 @@ public class PostService {
     private final PostReader postReader;
     private final PostFormatter postFormatter;
     private final PostAppender postAppender;
+    private final PostModifier postModifier;
 
 
     public PostListResponse getPostList(Pageable pageable, String boardCode) {
@@ -47,6 +51,13 @@ public class PostService {
 
 
         postAppender.createPost(postCreateRequest.toDomain(board,category));
+    }
+
+    @Transactional
+    public PostResponse editPost(String boardCode,Long postId, PostUpdateRequest postUpdateRequest) {
+        return postFormatter.format(
+                postModifier.updatePost(boardCode, postId, postUpdateRequest).getId()
+        );
     }
 
 }

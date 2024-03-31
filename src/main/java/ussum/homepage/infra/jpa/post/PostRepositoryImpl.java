@@ -70,6 +70,8 @@ public class PostRepositoryImpl implements PostRepository {
         CategoryEntity categoryEntity = categoryJpaRepository.findById(post.getCategoryId())
                 .orElseThrow(() -> new GeneralException(CATEGORY_NOT_FOUND));
 
-        return postMapper.toDomain(postJpaRepository.save(postMapper.toEntity(post, userEntity, boardEntity, categoryEntity)));
+        return postMapper.toDomain(
+                postJpaRepository.save(postMapper.toEntity(post, userEntity, boardEntity, categoryEntity))
+        );
     }
 }

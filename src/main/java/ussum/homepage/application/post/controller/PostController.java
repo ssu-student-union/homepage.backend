@@ -7,7 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import ussum.homepage.application.post.service.PostService;
+import ussum.homepage.application.post.service.dto.request.BoardUpdateRequest;
 import ussum.homepage.application.post.service.dto.request.PostCreateRequest;
+import ussum.homepage.application.post.service.dto.request.PostUpdateRequest;
 import ussum.homepage.application.post.service.dto.response.PostListResponse;
 import ussum.homepage.application.post.service.dto.response.PostResponse;
 import ussum.homepage.global.ApiResponse;
@@ -42,9 +44,11 @@ public class PostController {
     }
 
     @PatchMapping("/{boardCode}/posts/{postId}")
-    public ApiResponse<?> editBoardPost() {
-
-        return null;
+    public ApiResponse<PostResponse> editBoardPost(@PathVariable(name = "boardCode") String boardCode,
+                                                   @PathVariable(name = "postId") Long postId,
+                                                   @RequestBody PostUpdateRequest postUpdateRequest) {
+        PostResponse post = postService.editPost(boardCode,postId, postUpdateRequest);
+        return ApiResponse.onSuccess(post);
     }
 
     @DeleteMapping("/{boardCode}/posts/{postId}")
