@@ -15,6 +15,7 @@ import ussum.homepage.infra.jpa.post.entity.PostEntity;
 import ussum.homepage.infra.jpa.post.repository.BoardJpaRepository;
 import ussum.homepage.infra.jpa.post.repository.CategoryJpaRepository;
 import ussum.homepage.infra.jpa.post.repository.PostJpaRepository;
+import ussum.homepage.infra.jpa.user.entity.MajorCode;
 import ussum.homepage.infra.jpa.user.entity.UserEntity;
 import ussum.homepage.infra.jpa.user.repository.UserJpaRepository;
 
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static ussum.homepage.global.error.status.ErrorStatus.*;
+import static ussum.homepage.infra.jpa.post.entity.PostEntity.increaseViewCount;
 
 @Repository
 @RequiredArgsConstructor
@@ -40,8 +42,9 @@ public class PostRepositoryImpl implements PostRepository {
     @Override
     public Optional<Post> findByBoardIdAndId(Long boardId, Long postId) {
         BoardEntity boardEntity = boardJpaRepository.findById(boardId).orElseThrow(() -> new GeneralException(BOARD_NOT_FOUND));
-        return postJpaRepository.findByBoardEntityAndId(boardEntity, postId)
-                .map(postMapper::toDomain);
+        Optional<PostEntity> post = postJpaRepository.findByBoardEntityAndId(boardEntity, postId);
+        increaseViewCount(post.get());
+        return post.map(postMapper::toDomain);
     }
 
     @Override
@@ -60,7 +63,6 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public Post save(Post post){
-        //아직 User쪽 구현이 안되서 임시로 추가
         UserEntity userEntity = userJpaRepository.findById(post.getUserId())
                 .orElseThrow(() -> new GeneralException(USER_NOT_FOUND));
 
@@ -90,12 +92,13 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Page<Post> findBySearchCriteria(Pageable pageable, String q, String categoryCode) {
-//        return postJpaRepository.findBySearchCriteria(pageable, q, categoryCode)
-//                .map(postMapper::toDomain);
+    public Page<Post> findBySearchCriteria(Pageable pageable,String boardCode, String q, String categoryCode) {
+        BoardEntity boardEntity = boardJpaRepository.findByBoardCode(BoardCode.getEnumBoardCodeFromStringBoardCode(boardCode))
+                .orElseThrow(() -> new GeneralException(BOARD_NOT_FOUND));
         return postJpaRepository.findBySearchCriteria(
                 pageable,
+                boardEntity,
                 q.isEmpty() ? null : q,
-                categoryCode.isEmpty() ? null : categoryCode).map(postMapper::toDomain);
+                categoryCode.isEmpty() ? null : MajorCode.getEnumMajorCodeFromStringMajorCode(categoryCode)).map(postMapper::toDomain);
     }
 }

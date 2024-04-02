@@ -34,8 +34,19 @@ public class PostMapper {
 
     public PostEntity toEntity(Post post, UserEntity user, BoardEntity board, CategoryEntity category) {
 //        PostEntity from = PostEntity.from(post.getId());
-        LocalDateTime lastEditedAt = LocalDateTime.parse(post.getLastEditedAt());
-        LocalDateTime deletedAt = LocalDateTime.parse(post.getDeletedAt());
+//        LocalDateTime lastEditedAt = post.getLastEditedAt() != null ? LocalDateTime.parse(post.getLastEditedAt()) : null;
+//        LocalDateTime deletedAt = post.getDeletedAt() != null ? LocalDateTime.parse(post.getDeletedAt()) : null;
+        LocalDateTime lastEditedAt = null;
+        LocalDateTime deletedAt = null;
+
+        if (post.getLastEditedAt() != null && !"null".equals(post.getLastEditedAt())) {
+            lastEditedAt = LocalDateTime.parse(post.getLastEditedAt());
+        }
+
+        if (post.getDeletedAt() != null && !"null".equals(post.getDeletedAt())) {
+            deletedAt = LocalDateTime.parse(post.getDeletedAt());
+        }
+
         return PostEntity.of(
                 post.getId(),
                 post.getTitle(),

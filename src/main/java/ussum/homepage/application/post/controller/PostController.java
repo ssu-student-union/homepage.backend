@@ -53,7 +53,7 @@ public class PostController {
     }
 
     @GetMapping("/{boardCode}/posts/search")
-    public ApiResponse<PostListResponse> searchPost(@RequestParam(value = "q") String q, @RequestParam(value = "categorycode") String categoryCode,
+    public ApiResponse<PostListResponse> searchBoardPost(@RequestParam(value = "q") String q, @RequestParam(value = "categorycode") String categoryCode,
                                                     @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "take") int take,
                                                     @PathVariable String boardCode) {
         return ApiResponse.onSuccess(postService.searchPost(
