@@ -4,6 +4,8 @@ import ussum.homepage.domain.post.Board;
 import ussum.homepage.domain.post.Category;
 import ussum.homepage.domain.post.Post;
 
+import java.time.LocalDateTime;
+
 public record PostUpdateRequest(
         String title,
         String content,
@@ -17,9 +19,9 @@ public record PostUpdateRequest(
                 content,
                 post.getViewCount(),
                 thumbnailImage,
+                LocalDateTime.parse(post.getCreatedAt()),
                 null,
-                null,
-                null,
+                LocalDateTime.now(),
                 null,
                 post.getUserId(),
                 board.getId(),

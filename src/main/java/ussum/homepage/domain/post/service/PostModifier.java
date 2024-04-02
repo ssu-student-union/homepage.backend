@@ -2,6 +2,7 @@ package ussum.homepage.domain.post.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;;
+import org.springframework.transaction.annotation.Transactional;
 import ussum.homepage.application.post.service.dto.request.PostUpdateRequest;
 import ussum.homepage.domain.acl.service.AclModifier;
 import ussum.homepage.domain.acl.service.AclReader;
@@ -20,6 +21,9 @@ public class PostModifier {
     public Post updatePost(String boardCode,Long postId, PostUpdateRequest postUpdateRequest){
         Board board = boardReader.getBoardWithBoardCode(boardCode);
         Category category = categoryReader.getCategoryWithCode(postUpdateRequest.categoryCode());
+
+        Post postWithBoardCode = postReader.getPostWithBoardCode(boardCode, postId);
+        System.out.println("postWithBoardCode = " + postWithBoardCode.getCreatedAt());
 
         return postRepository.save(postUpdateRequest.toDomain(
                 postReader.getPostWithBoardCode(boardCode, postId), board, category)

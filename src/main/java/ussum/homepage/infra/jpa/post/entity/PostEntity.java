@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import org.springframework.cglib.core.Local;
 import ussum.homepage.infra.jpa.BaseEntity;
 import ussum.homepage.infra.jpa.user.entity.UserEntity;
 
@@ -45,6 +46,8 @@ public class PostEntity extends BaseEntity {
 
     public static void increaseViewCount(PostEntity post) {
         post.viewCount += 1;
+        LocalDateTime updatedAt = post.getUpdatedAt();
+        updatedAt = LocalDateTime.now();
     }
 
 }

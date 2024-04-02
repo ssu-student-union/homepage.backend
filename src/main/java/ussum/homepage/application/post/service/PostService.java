@@ -18,13 +18,14 @@ import ussum.homepage.domain.post.Post;
 import ussum.homepage.domain.post.service.*;
 import ussum.homepage.domain.user.User;
 import ussum.homepage.domain.user.service.UserReader;
+import ussum.homepage.infra.jpa.user.entity.MajorCode;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 //@Transactional(readOnly = true)
-@   Transactional
+@Transactional
 public class PostService {
     private final BoardReader boardReader;
     private final CategoryReader categoryReader;
@@ -57,22 +58,20 @@ public class PostService {
         postAppender.createPost(postCreateRequest.toDomain(board, user, category));
     }
 
-    @Transactional
     public PostResponse editPost(String boardCode,Long postId, PostUpdateRequest postUpdateRequest) {
         return postFormatter.format(
                 postModifier.updatePost(boardCode, postId, postUpdateRequest).getId()
         );
     }
 
-    @Transactional
     public void deletePost(String boardCode,Long postId){
         postModifier.deletePost(boardCode, postId);
     }
 
-    public PostListResponse searchPost(Pageable pageable, PostSearchRequest postSearchRequest) {
-        Page<Post> searchPost = postReader.getPostListBySearch(pageable, postSearchRequest);
+    public PostListResponse searchPost(Pageable pageable, String boardCode, String q, String categoryCode) {
+        Page<Post> searchPost = postReader.getPostListBySearch(pageable, boardCode, q, categoryCode);
         return PostListResponse.of(searchPost.getContent(), (int) searchPost.getTotalElements(),
                 postFormatter::format);
     }
-
 }
+
