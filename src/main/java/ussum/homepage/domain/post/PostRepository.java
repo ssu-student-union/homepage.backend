@@ -13,4 +13,5 @@ public interface PostRepository {
     List<Post> findByBoard(Long postId);
     Post save(Post post);
     void delete(Post post);
+    Page<Post> findBySearchCriteria(Pageable pageable, String q, String categoryCode);
 }

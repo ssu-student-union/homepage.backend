@@ -88,4 +88,14 @@ public class PostRepositoryImpl implements PostRepository {
 
         postJpaRepository.delete(postMapper.toEntity(post, userEntity, boardEntity, categoryEntity));
     }
+
+    @Override
+    public Page<Post> findBySearchCriteria(Pageable pageable, String q, String categoryCode) {
+//        return postJpaRepository.findBySearchCriteria(pageable, q, categoryCode)
+//                .map(postMapper::toDomain);
+        return postJpaRepository.findBySearchCriteria(
+                pageable,
+                q.isEmpty() ? null : q,
+                categoryCode.isEmpty() ? null : categoryCode).map(postMapper::toDomain);
+    }
 }

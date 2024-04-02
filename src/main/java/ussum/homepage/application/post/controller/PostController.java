@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import ussum.homepage.application.post.service.PostService;
 import ussum.homepage.application.post.service.dto.request.PostCreateRequest;
+import ussum.homepage.application.post.service.dto.request.PostSearchRequest;
 import ussum.homepage.application.post.service.dto.request.PostUpdateRequest;
 import ussum.homepage.application.post.service.dto.response.PostListResponse;
 import ussum.homepage.application.post.service.dto.response.PostResponse;
@@ -58,9 +59,9 @@ public class PostController {
     }
 
     @GetMapping("/{boardCode}/posts/search")
-    public ApiResponse<?> searchBoardPost() {
-
-        return null;
+    public ApiResponse<?> searchPost(Pageable pageable, @RequestBody PostSearchRequest postSearchRequest) {
+        PostListResponse postSearchListResponse = postService.searchPost(pageable, postSearchRequest);
+        return ApiResponse.onSuccess(postSearchListResponse);
     }
 
 

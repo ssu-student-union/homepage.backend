@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ussum.homepage.application.post.service.dto.BoardResponse;
 import ussum.homepage.application.post.service.dto.request.BoardUpdateRequest;
 import ussum.homepage.application.post.service.dto.request.PostCreateRequest;
+import ussum.homepage.application.post.service.dto.request.PostSearchRequest;
 import ussum.homepage.application.post.service.dto.request.PostUpdateRequest;
 import ussum.homepage.application.post.service.dto.response.PostListResponse;
 import ussum.homepage.application.post.service.dto.response.PostResponse;
@@ -63,6 +64,12 @@ public class PostService {
     @Transactional
     public void deletePost(String boardCode,Long postId){
         postModifier.deletePost(boardCode, postId);
+    }
+
+    public PostListResponse searchPost(Pageable pageable, PostSearchRequest postSearchRequest) {
+        Page<Post> searchPost = postReader.getPostListBySearch(pageable, postSearchRequest);
+        return PostListResponse.of(searchPost.getContent(), (int) searchPost.getTotalElements(),
+                postFormatter::format);
     }
 
 }

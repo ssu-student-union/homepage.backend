@@ -15,13 +15,24 @@ import java.util.Optional;
 
 public interface PostJpaRepository extends JpaRepository<PostEntity,Long> {
     @Query("""
-                select pe
-                from PostEntity pe
-                where pe.boardEntity = :board
-                order by pe.id desc 
+                SELECT pe
+                FROM PostEntity pe
+                WHERE pe.boardEntity = :board
+                ORDER BY pe.id DESC 
         """)
     Page<PostEntity> findAllByBoard(Pageable pageable, @Param("board") BoardEntity board);
     Optional<PostEntity> findByBoardEntityAndId(BoardEntity boardEntity, Long id);
     @Query("SELECT p FROM PostEntity p WHERE p.boardEntity.id = :boardId")
     List<PostEntity> findAllByBoardId(@Param("boardId") Long boardId);
+    @Query("""
+                    SELECT pe
+                    FROM PostEntity pe
+                    WHERE (:q IS NULL OR pe.title LIKE %:q% OR pe.content LIKE %:q%)
+                    AND (:categoryCode IS NULL OR pe.categoryEntity.majorCode = :categoryCode)
+                    AND pe.deletedAt IS NULL
+                    ORDER BY pe.id DESC
+            """)
+    Page<PostEntity> findBySearchCriteria(Pageable pageable, @Param("q") String q,
+                                          @Param("categoryCode") String categoryCode);
+
 }
