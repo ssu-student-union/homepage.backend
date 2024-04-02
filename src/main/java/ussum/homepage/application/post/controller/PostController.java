@@ -1,7 +1,6 @@
 package ussum.homepage.application.post.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,12 +19,14 @@ import ussum.homepage.global.ApiResponse;
 public class PostController {
     private final PostService postService;
 
-    @GetMapping("/{boardCode}/posts/")
-    public ApiResponse<PostListResponse> getBoardPostsList(Pageable pageable,
+    @GetMapping("/{boardCode}/posts")
+    public ApiResponse<PostListResponse> getBoardPostsList(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                           @RequestParam(value = "take") int take,
                                                            @PathVariable(name = "boardCode") String boardCode) {
 
 //        PostListResponse postList = postService.getPostList(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id").descending()), boardCode);
-        PostListResponse postList = postService.getPostList(pageable, boardCode);
+        PostListResponse postList = postService.getPostList(PageRequest.of(page,
+                        take, Sort.by("id").descending()), boardCode);
         return ApiResponse.onSuccess(postList);
     }
 

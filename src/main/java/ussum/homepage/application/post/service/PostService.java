@@ -16,15 +16,19 @@ import ussum.homepage.domain.post.Board;
 import ussum.homepage.domain.post.Category;
 import ussum.homepage.domain.post.Post;
 import ussum.homepage.domain.post.service.*;
+import ussum.homepage.domain.user.User;
+import ussum.homepage.domain.user.service.UserReader;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+//@Transactional(readOnly = true)
+@   Transactional
 public class PostService {
     private final BoardReader boardReader;
     private final CategoryReader categoryReader;
+    private final UserReader userReader;
 
     private final PostReader postReader;
     private final PostFormatter postFormatter;
@@ -35,8 +39,7 @@ public class PostService {
     public PostListResponse getPostList(Pageable pageable, String boardCode) {
 //        Board board = boardReader.getBoardWithBoardCode(boardCode);
         Page<Post> postList = postReader.getPostList(pageable, boardCode);
-        return PostListResponse.of(postList.getContent(),
-                (int) postList.getTotalElements(), postFormatter::format);
+        return PostListResponse.of(postList.getContent(), postList.getNumberOfElements(), postFormatter::format);
     }
 
     public PostResponse getPost(String boardCode, Long postId) {
@@ -49,9 +52,9 @@ public class PostService {
         Board board = boardReader.getBoardWithBoardCode(boardCode);
         Category category = categoryReader.getCategoryWithCode(postCreateRequest.categoryCode());
         //user도 찾아 와야 하지 않을까
+        User user = userReader.getUserWithId(1L);
 
-
-        postAppender.createPost(postCreateRequest.toDomain(board,category));
+        postAppender.createPost(postCreateRequest.toDomain(board, user, category));
     }
 
     @Transactional

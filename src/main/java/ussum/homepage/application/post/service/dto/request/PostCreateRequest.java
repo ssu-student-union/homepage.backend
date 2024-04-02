@@ -16,18 +16,18 @@ public record PostCreateRequest(
         String categoryCode,
         String thumbNailImage
 ) {
-    public Post toDomain(Board board, Category category) {
+    public Post toDomain(Board board, User user, Category category) {
         return Post.of(
                 null,
                 title,
                 content,
-                0,
+                1,
                 thumbNailImage,
                 null,
                 null,
                 null,
                 null,
-                null, //이건 채워넣어야 함, user쪽 개발되면
+                user.getId(), //이건 채워넣어야 함, user쪽 개발되면
                 board.getId(),
                 category.getId()
         );

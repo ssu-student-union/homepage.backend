@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ussum.homepage.application.post.service.dto.request.PostSearchRequest;
 import ussum.homepage.domain.post.Board;
 import ussum.homepage.domain.post.BoardRepository;
 import ussum.homepage.domain.post.Post;
@@ -38,5 +39,10 @@ public class PostReader {
 
     public List<Post> getPostWithBoard(Board board){
         return postRepository.findByBoard(board.getId());
+    }
+
+    public Page<Post> getPostListBySearch(Pageable pageable, PostSearchRequest postSearchRequest) {
+        return postRepository.findBySearchCriteria(
+                pageable, postSearchRequest.q(), postSearchRequest.categoryCode());
     }
 }
