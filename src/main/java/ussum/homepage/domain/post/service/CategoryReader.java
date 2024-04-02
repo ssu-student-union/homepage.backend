@@ -17,4 +17,9 @@ public class CategoryReader {
         return categoryRepository.findByMajorCode(categoryCode)
                 .orElseThrow(() -> new GeneralException(CATEGORY_NOT_FOUND));
     }
+
+    public Category getCategoryById(Long categoryId) {
+        return categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new GeneralException((CATEGORY_NOT_FOUND)));
+    }
 }
