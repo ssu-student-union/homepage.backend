@@ -10,7 +10,6 @@ import ussum.homepage.application.post.service.dto.BoardListResponse;
 import ussum.homepage.application.post.service.dto.BoardResponse;
 import ussum.homepage.application.post.service.dto.request.BoardCreateRequest;
 import ussum.homepage.application.post.service.dto.request.BoardUpdateRequest;
-import ussum.homepage.application.post.service.dto.request.PageableDto;
 import ussum.homepage.domain.post.Board;
 import ussum.homepage.domain.post.service.BoardAppender;
 import ussum.homepage.domain.post.service.BoardModifier;
