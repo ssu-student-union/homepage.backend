@@ -1,6 +1,8 @@
 package ussum.homepage.infra.jpa.post;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import ussum.homepage.domain.post.Board;
 import ussum.homepage.domain.post.BoardRepository;
@@ -25,8 +27,8 @@ public class BoardRepositoryImpl implements BoardRepository {
         return boardJpaRepository.findByBoardCode(BoardCode.getEnumBoardCodeFromStringBoardCode(boardCode)).map(boardMapper::toDomain);
     }
     @Override
-    public List<Board> findAll(){
-        return boardJpaRepository.findAll().stream().map(boardMapper::toDomain).toList();
+    public Page<Board> findAll(Pageable pageable){
+        return boardJpaRepository.findAll(pageable).map(boardMapper::toDomain);
     }
     @Override
     public Board save(Board board){

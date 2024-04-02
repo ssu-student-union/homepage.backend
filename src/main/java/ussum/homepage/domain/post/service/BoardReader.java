@@ -1,6 +1,8 @@
 package ussum.homepage.domain.post.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ussum.homepage.domain.post.Board;
 import ussum.homepage.domain.post.BoardRepository;
@@ -18,8 +20,8 @@ public class BoardReader {
     public Board getBoardWithBoardCode(String boardCode){
         return boardRepository.findByBoardCode(boardCode).orElseThrow(()-> new GeneralException(BOARD_NOT_FOUND));
     }
-    public List<Board> getBoardList(){
-        return boardRepository.findAll();
+    public Page<Board> getBoardList(Pageable pageable){
+        return boardRepository.findAll(pageable);
     }
     public Board getBoardWithId(Long boardId){
         return boardRepository.findById(boardId).orElseThrow(()-> new GeneralException(BOARD_NOT_FOUND));
