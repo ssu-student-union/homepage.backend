@@ -8,6 +8,7 @@ import ussum.homepage.application.post.service.dto.BoardListResponse;
 import ussum.homepage.application.post.service.dto.BoardResponse;
 import ussum.homepage.application.post.service.dto.request.BoardCreateRequest;
 import ussum.homepage.application.post.service.dto.request.BoardUpdateRequest;
+import ussum.homepage.application.post.service.dto.request.PageableDto;
 import ussum.homepage.domain.post.service.BoardReader;
 import ussum.homepage.global.ApiResponse;
 
@@ -17,8 +18,8 @@ import ussum.homepage.global.ApiResponse;
 public class BoardController {
     private final BoardService boardService;
     @GetMapping
-    public ApiResponse<BoardListResponse> getBoardList() {
-        BoardListResponse board = boardService.getBoardList();
+    public ApiResponse<BoardListResponse> getBoardList(@RequestParam(name = "page") int page, @RequestParam(name = "take") int take) {
+        BoardListResponse board = boardService.getBoardList(page, take);
         return ApiResponse.onSuccess(board);
     }
     @PostMapping
