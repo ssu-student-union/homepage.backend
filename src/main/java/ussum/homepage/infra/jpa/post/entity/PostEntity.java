@@ -43,4 +43,8 @@ public class PostEntity extends BaseEntity {
         return new PostEntity(id, title, content, viewCount, thumbnailImage, lastEditedAt, deletedAt, user, board, category);
     }
 
+    public static void increaseViewCount(PostEntity post) {
+        post.viewCount += 1;
+    }
+
 }
