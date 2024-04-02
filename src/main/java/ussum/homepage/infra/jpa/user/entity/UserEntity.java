@@ -1,12 +1,14 @@
 package ussum.homepage.infra.jpa.user.entity;
 import jakarta.persistence.*;
 import lombok.*;
+import ussum.homepage.domain.user.User;
 import ussum.homepage.infra.jpa.BaseEntity;
 
 @Entity
 @Table(name = "user")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class UserEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,4 +16,8 @@ public class UserEntity extends BaseEntity {
     private String name;
     private Long studentId;
     private String profileImage;
+
+    public static UserEntity of(Long id, String name, Long studentId, String profileImage) {
+        return new UserEntity(id, name, studentId, profileImage);
+    }
 }
