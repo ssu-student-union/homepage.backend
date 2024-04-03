@@ -25,10 +25,10 @@ public class AclMapper {
     public PostAcl toDomain(PostAclEntity postAclEntity) {
         return PostAcl.of(
                 postAclEntity.getId(),
-                postAclEntity.getTarget(),
-                postAclEntity.getType(),
-                postAclEntity.getAction(),
-                postAclEntity.getOrderType(),
+                String.valueOf(postAclEntity.getTarget()),
+                String.valueOf(postAclEntity.getType()),
+                String.valueOf(postAclEntity.getAction()),
+                String.valueOf(postAclEntity.getOrderType()),
                 postAclEntity.getPostEntity().getId()
         );
     }

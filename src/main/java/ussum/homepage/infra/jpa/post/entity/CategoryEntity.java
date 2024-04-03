@@ -8,6 +8,7 @@ import ussum.homepage.infra.jpa.user.entity.MajorCode;
 @Table(name = "category")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class CategoryEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,4 +19,12 @@ public class CategoryEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
+
+    public static CategoryEntity of(Long id, MajorCode majorCode, String name, BoardEntity board) {
+        return new CategoryEntity(id, majorCode, name, board);
+    }
+
+    public static CategoryEntity from(Long id) {
+        return new CategoryEntity(id, null, null,null);
+    }
 }

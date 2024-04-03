@@ -31,6 +31,9 @@ public enum ErrorStatus implements BaseErrorCode {
     //Post 관련 에러
     POST_NOT_FOUND(HttpStatus.NOT_FOUND,"POST_001","게시글을 찾을 수 없습니다."),
 
+    //Category 관련 에러
+    CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND,"CATEGORY_001","카테고리를 찾을 수 없습니다."),
+
     //ACL 관련 에러
     ACL_PERMISSION_DENIED(HttpStatus.FORBIDDEN,"ACL_001","ACL에 권한이 없습니다."),
     BOARD_ACL_NOT_FOUND(HttpStatus.NOT_FOUND,"BOARD_ACL_001","게시판 ACL을 찾을 수 없습니다."),
