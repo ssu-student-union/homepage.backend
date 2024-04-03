@@ -36,6 +36,7 @@ public class CommentService {
         PostComment postComment = postCommentAppender.createPostComment(postCommentCreateRequest.toDomain(userId,postId));
         return postCommentFormatter.format(postComment.getPostId(), postComment.getUserId(), null);
     }
+    @Transactional
     public PostCommentResponse editComment(Long userId, Long postId, Long commentId, PostCommentUpdateRequest postCommentUpdateRequest){
         PostComment postComment = postCommentModifier.updateComment(userId, postId, commentId, postCommentUpdateRequest);
         return postCommentFormatter.format(postComment.getPostId(), postComment.getUserId(), null);
