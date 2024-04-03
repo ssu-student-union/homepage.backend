@@ -14,4 +14,7 @@ public class PostCommentReader {
     public Page<PostComment> getPostCommentList(Pageable pageable, Long postId){
         return postCommentRepository.findAllByPostId(pageable, postId);
     }
+    public PostComment getPostComment(Long postId, Long userId){
+        return postCommentRepository.findByPostIdAndUserId(postId, userId);
+    }
 }

@@ -17,4 +17,8 @@ public class PostCommentRepositoryImpl implements PostCommentRepository {
     public Page<PostComment> findAllByPostId(Pageable pageable, Long postId){
         return postCommentJpaRepository.findAllByPostId(pageable, postId).map(postCommentMapper::toDomain);
     }
+    @Override
+    public PostComment findByPostIdAndUserId(Long postId, Long userId){
+        return postCommentMapper.toDomain(postCommentJpaRepository.findByPostIdAndUserId(postId, userId));
+    }
 }

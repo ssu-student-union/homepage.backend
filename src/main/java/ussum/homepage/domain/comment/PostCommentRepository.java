@@ -5,4 +5,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface PostCommentRepository {
     Page<PostComment> findAllByPostId(Pageable pageable, Long postId);
+    PostComment findByPostIdAndUserId(Long postId, Long userId);
 }

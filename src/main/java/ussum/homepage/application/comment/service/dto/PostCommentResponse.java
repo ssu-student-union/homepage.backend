@@ -1,5 +1,7 @@
 package ussum.homepage.application.comment.service.dto;
 
+import ussum.homepage.application.post.service.dto.response.PostResponse;
+import ussum.homepage.application.user.service.dto.response.UserResponse;
 import ussum.homepage.domain.comment.PostComment;
 
 public record PostCommentResponse(
