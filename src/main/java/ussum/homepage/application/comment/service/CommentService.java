@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ussum.homepage.application.comment.service.dto.PostCommentListResponse;
 import ussum.homepage.application.comment.service.dto.PostCommentResponse;
 import ussum.homepage.domain.comment.PostComment;
+import ussum.homepage.domain.comment.service.PostCommentAppender;
 import ussum.homepage.domain.comment.service.PostCommentFormatter;
 import ussum.homepage.domain.comment.service.PostCommentReader;
 import ussum.homepage.domain.post.service.formatter.PostFormatter;
@@ -22,9 +23,14 @@ public class CommentService {
     private final UserFormatter userFormatter;
     private final PostCommentReader postCommentReader;
     private final PostCommentFormatter postCommentFormatter;
+    private final PostCommentAppender postCommentAppender;
     public PostCommentListResponse getCommentList(String boardCode, Long postId, int page, int take, String type){
         Page<PostComment> commentList = postCommentReader.getPostCommentList(setPageable(page,take),postId);
         return PostCommentListResponse.of(commentList, commentList.getTotalElements(), postCommentFormatter::format, type);
+    }
+    public PostCommentResponse createComment(Long userId, String boardCode, Long postId, String content){
+        PostComment postComment = postCommentAppender.createPostComment(PostComment.createPostComment(content, postId, userId));
+        return postCommentFormatter.format(postComment.getPostId(), postComment.getUserId(), null);
     }
     private Pageable setPageable(int page, int take){
         return PageRequest.of(page, take);

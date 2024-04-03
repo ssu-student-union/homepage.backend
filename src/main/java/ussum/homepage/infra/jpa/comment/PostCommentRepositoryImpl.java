@@ -21,4 +21,8 @@ public class PostCommentRepositoryImpl implements PostCommentRepository {
     public PostComment findByPostIdAndUserId(Long postId, Long userId){
         return postCommentMapper.toDomain(postCommentJpaRepository.findByPostIdAndUserId(postId, userId));
     }
+    @Override
+    public PostComment save(PostComment postComment){
+        return postCommentMapper.toDomain(postCommentJpaRepository.save(postCommentMapper.toEntity(postComment)));
+    }
 }
