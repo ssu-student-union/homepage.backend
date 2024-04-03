@@ -24,7 +24,7 @@ public class CommentController {
         PostCommentListResponse comments = commentService.getCommentList(boardCode, postId, page, take, type);
         return ApiResponse.onSuccess(comments);
     }
-    @PostMapping("/boards/:boardCode/posts/:postId/comments")
+    @PostMapping("/boards/{boardCode}/posts/{postId}/comments")
     public ApiResponse<PostCommentResponse> createPostComment(@PathVariable(name = "boardCode") String boardCode,
                                                               @PathVariable(name = "postId") Long postId,
                                                               @RequestBody PostCommentCreateRequest postCommentCreateRequest) {
