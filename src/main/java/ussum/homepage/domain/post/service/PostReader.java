@@ -36,9 +36,12 @@ public class PostReader {
         return postRepository.findByBoardIdAndId(board.getId(), postId).orElseThrow(() -> new GeneralException(POST_NOT_FOUND));
     }
 
-//    public List<Post> getPostWithBoard(Board board){
-//        return postRepository.findByBoard(board.getId());
-//    }
+    public Post getPostWithBoardCodeForEditAndDelete(String boardCode,Long postId) {
+        Board board = boardRepository.findByBoardCode(boardCode).orElseThrow(
+                () -> new GeneralException(BOARD_NOT_FOUND));
+
+        return postRepository.findByBoardIdAndIdForEditAndDelete(board.getId(), postId).orElseThrow(() -> new GeneralException(POST_NOT_FOUND));
+    }
 
     public Page<Post> getPostListBySearch(Pageable pageable, String boardCode, String q, String categoryCode) {
         return postRepository.findBySearchCriteria(

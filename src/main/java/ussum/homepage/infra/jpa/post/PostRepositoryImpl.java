@@ -48,6 +48,13 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
+    public Optional<Post> findByBoardIdAndIdForEditAndDelete(Long boardId, Long postId) {
+        BoardEntity boardEntity = boardJpaRepository.findById(boardId).orElseThrow(() -> new GeneralException(BOARD_NOT_FOUND));
+        Optional<PostEntity> post = postJpaRepository.findByBoardEntityAndId(boardEntity, postId);
+        return post.map(postMapper::toDomain);
+    }
+
+    @Override
     public Page<Post> findAllWithBoard(Pageable pageable, String boardCode) {
         BoardEntity boardEntity = boardJpaRepository.findByBoardCode(BoardCode.getEnumBoardCodeFromStringBoardCode(boardCode))
                 .orElseThrow(() -> new GeneralException(BOARD_NOT_FOUND));

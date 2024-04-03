@@ -40,7 +40,7 @@ public class PostService {
     public PostListResponse getPostList(Pageable pageable, String boardCode) {
 //        Board board = boardReader.getBoardWithBoardCode(boardCode);
         Page<Post> postList = postReader.getPostList(pageable, boardCode);
-        return PostListResponse.of(postList.getContent(), postList.getNumberOfElements(), postFormatter::format);
+        return PostListResponse.of(postList.getContent(), (int) postList.getTotalElements(), postFormatter::format);
     }
 
     public PostResponse getPost(String boardCode, Long postId) {

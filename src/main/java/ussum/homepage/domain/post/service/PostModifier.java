@@ -21,17 +21,15 @@ public class PostModifier {
     public Post updatePost(String boardCode,Long postId, PostUpdateRequest postUpdateRequest){
         Board board = boardReader.getBoardWithBoardCode(boardCode);
         Category category = categoryReader.getCategoryWithCode(postUpdateRequest.categoryCode());
-
-        Post postWithBoardCode = postReader.getPostWithBoardCode(boardCode, postId);
-        System.out.println("postWithBoardCode = " + postWithBoardCode.getCreatedAt());
+//        Post postWithBoardCode = postReader.getPostWithBoardCodeForEditAndDelete(boardCode, postId);
 
         return postRepository.save(postUpdateRequest.toDomain(
-                postReader.getPostWithBoardCode(boardCode, postId), board, category)
+                postReader.getPostWithBoardCodeForEditAndDelete(boardCode, postId), board, category)
         );
     }
 
     public void deletePost(String boardCode, Long postId) {
-        postRepository.delete(postReader.getPostWithBoardCode(boardCode, postId));
+        postRepository.delete(postReader.getPostWithBoardCodeForEditAndDelete(boardCode, postId));
     }
 
 }
