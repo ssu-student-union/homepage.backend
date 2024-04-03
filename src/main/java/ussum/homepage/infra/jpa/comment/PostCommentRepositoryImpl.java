@@ -6,7 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import ussum.homepage.domain.comment.PostComment;
 import ussum.homepage.domain.comment.PostCommentRepository;
+import ussum.homepage.global.error.exception.GeneralException;
 import ussum.homepage.infra.jpa.comment.repository.PostCommentJpaRepository;
+
+import static ussum.homepage.global.error.status.ErrorStatus.POST_COMMENT_NOT_FOUND;
 
 @Repository
 @RequiredArgsConstructor
@@ -28,5 +31,13 @@ public class PostCommentRepositoryImpl implements PostCommentRepository {
     @Override
     public PostComment update(PostComment postComment){
         return postCommentMapper.toDomain(postCommentJpaRepository.save(postCommentMapper.toEntity(postComment)));
+    }
+    @Override
+    public PostComment findById(Long id){
+        return postCommentMapper.toDomain(postCommentJpaRepository.findById(id).orElseThrow(() -> new GeneralException(POST_COMMENT_NOT_FOUND)));
+    }
+    @Override
+    public void delete(PostComment postComment){
+        postCommentJpaRepository.delete(postCommentMapper.toEntity(postComment));
     }
 }

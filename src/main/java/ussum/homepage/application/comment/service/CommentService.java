@@ -41,6 +41,10 @@ public class CommentService {
         PostComment postComment = postCommentModifier.updateComment(userId, postId, commentId, postCommentUpdateRequest);
         return postCommentFormatter.format(postComment.getPostId(), postComment.getUserId(), null);
     }
+    @Transactional
+    public void deleteComment(Long commentId){
+        postCommentModifier.deleteComment(commentId);
+    }
     private Pageable setPageable(int page, int take){
         return PageRequest.of(page, take);
     }

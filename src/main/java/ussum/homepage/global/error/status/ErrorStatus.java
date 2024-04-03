@@ -30,6 +30,8 @@ public enum ErrorStatus implements BaseErrorCode {
 
     //Post 관련 에러
     POST_NOT_FOUND(HttpStatus.NOT_FOUND,"POST_001","게시글을 찾을 수 없습니다."),
+    //PostComment 관련 에러
+    POST_COMMENT_NOT_FOUND(HttpStatus.NOT_FOUND,"POST_COMMENT_001","댓글을 찾을 수 없습니다."),
 
     //Category 관련 에러
     CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND,"CATEGORY_001","카테고리를 찾을 수 없습니다."),

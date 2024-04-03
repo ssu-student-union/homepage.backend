@@ -39,4 +39,11 @@ public class CommentController {
         PostCommentResponse comment = commentService.editComment(null, postId, commentId, postCommentUpdateRequest);
         return ApiResponse.onSuccess(comment);
     }
+    @DeleteMapping("/boards/{boardCode}/posts/{postId}/comments/{commentId}")
+    public ApiResponse<PostCommentResponse> deletePostComment(@PathVariable(name = "boardCode") String boardCode,
+                                                            @PathVariable(name = "postId") Long postId,
+                                                            @PathVariable(name = "commentId") Long commentId) {
+        commentService.deleteComment(commentId);
+        return ApiResponse.onSuccess(null);
+    }
 }

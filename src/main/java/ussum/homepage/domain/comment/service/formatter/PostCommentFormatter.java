@@ -16,7 +16,7 @@ public class PostCommentFormatter implements ussum.homepage.domain.comment.servi
     private final UserFormatter userFormatter;
     @Override
     public PostCommentResponse format(Long postId, Long userId, String type){
-        final PostComment postComment = postCommentReader.getPostComment(postId, userId);
+        final PostComment postComment = postCommentReader.getPostCommentWithPostIdAndUserId(postId, userId);
         return PostCommentResponse.of(postComment,postFormatter.format(postComment.getPostId()), userFormatter.format(postComment.getUserId()), type);
     }
 }
