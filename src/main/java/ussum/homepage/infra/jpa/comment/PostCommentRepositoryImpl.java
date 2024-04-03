@@ -25,4 +25,8 @@ public class PostCommentRepositoryImpl implements PostCommentRepository {
     public PostComment save(PostComment postComment){
         return postCommentMapper.toDomain(postCommentJpaRepository.save(postCommentMapper.toEntity(postComment)));
     }
+    @Override
+    public PostComment update(PostComment postComment){
+        return postCommentMapper.toDomain(postCommentJpaRepository.save(postCommentMapper.toEntity(postComment)));
+    }
 }

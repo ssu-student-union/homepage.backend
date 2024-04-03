@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ussum.homepage.application.comment.service.CommentService;
 import ussum.homepage.application.comment.service.dto.PostCommentListResponse;
 import ussum.homepage.application.comment.service.dto.PostCommentResponse;
+import ussum.homepage.application.comment.service.dto.request.PostCommentUpdateRequest;
 import ussum.homepage.application.post.service.dto.BoardListResponse;
 import ussum.homepage.global.ApiResponse;
 
@@ -27,6 +28,14 @@ public class CommentController {
                                                               @PathVariable(name = "postId") Long postId,
                                                               @RequestBody String content) {
         PostCommentResponse comment = commentService.createComment(null, boardCode, postId, content);
+        return ApiResponse.onSuccess(comment);
+    }
+    @PatchMapping("/boards/{boardCode}/posts/{postId}/comments/{commentId}")
+    public ApiResponse<PostCommentResponse> editPostComment(@PathVariable(name = "boardCode") String boardCode,
+                                                            @PathVariable(name = "postId") Long postId,
+                                                            @PathVariable(name = "commentId") Long commentId,
+                                                            @RequestBody PostCommentUpdateRequest postCommentUpdateRequest) {
+        PostCommentResponse comment = commentService.editComment(null, postId, commentId, postCommentUpdateRequest);
         return ApiResponse.onSuccess(comment);
     }
 }
