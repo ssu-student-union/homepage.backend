@@ -19,7 +19,4 @@ public class PostComment {
                                  String lastEditedAt){
         return new PostComment(id, content, postId, userId, lastEditedAt);
     }
-    public static PostComment createPostComment(String content, Long postId, Long userId){
-        return new PostComment(null, content, postId, userId, null );
-    }
 }

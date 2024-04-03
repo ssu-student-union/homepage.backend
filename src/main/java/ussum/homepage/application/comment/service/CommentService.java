@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ussum.homepage.application.comment.service.dto.PostCommentListResponse;
 import ussum.homepage.application.comment.service.dto.PostCommentResponse;
+import ussum.homepage.application.comment.service.dto.request.PostCommentCreateRequest;
 import ussum.homepage.application.comment.service.dto.request.PostCommentUpdateRequest;
 import ussum.homepage.domain.comment.PostComment;
 import ussum.homepage.domain.comment.service.PostCommentAppender;
@@ -31,8 +32,8 @@ public class CommentService {
         Page<PostComment> commentList = postCommentReader.getPostCommentList(setPageable(page,take),postId);
         return PostCommentListResponse.of(commentList, commentList.getTotalElements(), postCommentFormatter::format, type);
     }
-    public PostCommentResponse createComment(Long userId, String boardCode, Long postId, String content){
-        PostComment postComment = postCommentAppender.createPostComment(PostComment.createPostComment(content, postId, userId));
+    public PostCommentResponse createComment(Long userId, String boardCode, Long postId, PostCommentCreateRequest postCommentCreateRequest){
+        PostComment postComment = postCommentAppender.createPostComment(postCommentCreateRequest.toDomain(userId,postId));
         return postCommentFormatter.format(postComment.getPostId(), postComment.getUserId(), null);
     }
     public PostCommentResponse editComment(Long userId, Long postId, Long commentId, PostCommentUpdateRequest postCommentUpdateRequest){
