@@ -20,4 +20,7 @@ public class UserEntity extends BaseEntity {
     public static UserEntity of(Long id, String name, Long studentId, String profileImage) {
         return new UserEntity(id, name, studentId, profileImage);
     }
+    public static UserEntity from(Long id){
+        return new UserEntity(id, null, null, null);
+    }
 }

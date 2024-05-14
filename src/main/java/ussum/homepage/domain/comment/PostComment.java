@@ -11,4 +11,12 @@ public class PostComment {
     private String content;
     private Long postId;
     private Long userId;
+    private String lastEditedAt;
+    public static PostComment of(Long id,
+                                 String content,
+                                 Long postId,
+                                 Long userId,
+                                 String lastEditedAt){
+        return new PostComment(id, content, postId, userId, lastEditedAt);
+    }
 }
