@@ -2,7 +2,8 @@ package ussum.homepage.application.post.service.dto;
 
 import ussum.homepage.domain.post.Board;
 
-public record BoardResponse(
+public record
+BoardResponse(
         Long id,
         String boardCode,
         String name,
