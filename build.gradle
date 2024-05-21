@@ -32,7 +32,7 @@ dependencies {
 
 
 	//security
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	//jwt
 	implementation group: 'com.auth0', name: 'java-jwt', version: '4.2.1'
@@ -42,6 +42,9 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	implementation 'com.auth0:jwks-rsa:0.21.1'
+
+	//webClient
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
 	//lombok
 	compileOnly 'org.projectlombok:lombok'
