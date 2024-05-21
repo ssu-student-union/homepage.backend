@@ -1,4 +1,4 @@
-package ussum.homepage.application.oauth.service.dto;
+package ussum.homepage.application.user.service.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

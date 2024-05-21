@@ -1,7 +1,6 @@
-package ussum.homepage.application.oauth.service;
+package ussum.homepage.application.user.service;
 
 import io.netty.handler.codec.http.HttpHeaderValues;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,23 +8,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
-import ussum.homepage.application.oauth.service.dto.KakaoTokenResponseDto;
-import ussum.homepage.application.oauth.service.dto.KakaoUserInfoResponseDto;
-
-import java.nio.charset.Charset;
-
-import static org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames.GRANT_TYPE;
+import ussum.homepage.application.user.service.dto.response.KakaoTokenResponseDto;
+import ussum.homepage.application.user.service.dto.response.KakaoUserInfoResponseDto;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class OAuthService {
 
     @Value("${oauth2.kakao.client_id}")
@@ -79,7 +72,8 @@ public class OAuthService {
         return responseDto.getAccessToken().toString();
     }
 
-    public void getUserInfo(String accessToken) {
+    @Transactional
+    public Long getUserInfo(String accessToken) {
 
         String urlString = resource_uri;
 
@@ -97,9 +91,7 @@ public class OAuthService {
                 })
                 .block();
 
-        Long id = userInfo.getId();
-
-        return ;
+        return userInfo.getId();
     }
 
 }
