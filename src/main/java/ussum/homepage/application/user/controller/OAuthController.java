@@ -22,11 +22,11 @@ public class OAuthController {
     }
 
     @GetMapping("/callback")
-    public ApiResponse<Long> callback(@RequestParam("code") String code){
+    public ApiResponse<String> callback(@RequestParam("code") String code){
         String accessToken = oAuthService.getAccessToken(code);
         System.out.println(accessToken);
-        Long id = oAuthService.getUserInfo(accessToken);
-        return ApiResponse.onSuccess(id);
+        String profileImage = oAuthService.getUserInfo(accessToken);
+        return ApiResponse.onSuccess(profileImage);
     }
 
 }

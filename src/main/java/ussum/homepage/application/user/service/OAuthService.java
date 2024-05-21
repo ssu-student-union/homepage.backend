@@ -14,12 +14,17 @@ import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
 import ussum.homepage.application.user.service.dto.response.KakaoTokenResponseDto;
 import ussum.homepage.application.user.service.dto.response.KakaoUserInfoResponseDto;
+import ussum.homepage.domain.user.User;
+import ussum.homepage.domain.user.service.UserFormatter;
+import ussum.homepage.domain.user.service.UserReader;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 @Transactional
 public class OAuthService {
+    private final UserFormatter userFormatter;
+    private final UserReader userReader;
 
     @Value("${oauth2.kakao.client_id}")
     private String clientId;
@@ -73,7 +78,7 @@ public class OAuthService {
     }
 
     @Transactional
-    public Long getUserInfo(String accessToken) {
+    public String getUserInfo(String accessToken) {
 
         String urlString = resource_uri;
 
@@ -90,8 +95,8 @@ public class OAuthService {
                     log.info("error content : {}", error.getMessage());
                 })
                 .block();
-
-        return userInfo.getId();
+        String profileImage = userInfo.getKakaoAccount().getProfile().getThumbnailImageUrl(); // or .getProfileImageUrl()
+        return profileImage;
     }
 
 }

@@ -4,6 +4,7 @@ import ussum.homepage.domain.user.User;
 
 public record UserRequest(
         Long id,
+        String profileImage,
         String name,
         Long studentId
 ) {
@@ -12,7 +13,7 @@ public record UserRequest(
                 null, // id값은 뭘 의미?
                 name,
                 studentId,
-                null,
+                profileImage,
                 null,
                 null
         );
