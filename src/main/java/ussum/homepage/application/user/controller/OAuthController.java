@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ussum.homepage.application.user.service.OAuthService;
+import ussum.homepage.application.user.service.dto.response.UserOAuthResponse;
 import ussum.homepage.global.ApiResponse;
 
 @RequiredArgsConstructor
@@ -22,11 +23,10 @@ public class OAuthController {
     }
 
     @GetMapping("/callback")
-    public ApiResponse<String> callback(@RequestParam("code") String code){
+    public ApiResponse<UserOAuthResponse> callback(@RequestParam("code") String code){
         String accessToken = oAuthService.getAccessToken(code);
-        System.out.println(accessToken);
-        String profileImage = oAuthService.getUserInfo(accessToken);
-        return ApiResponse.onSuccess(profileImage);
+        UserOAuthResponse response = oAuthService.getUserInfo(accessToken);
+        return ApiResponse.onSuccess(response);
     }
 
 }

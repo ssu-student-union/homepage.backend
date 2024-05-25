@@ -14,9 +14,17 @@ import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
 import ussum.homepage.application.user.service.dto.response.KakaoTokenResponseDto;
 import ussum.homepage.application.user.service.dto.response.KakaoUserInfoResponseDto;
+import ussum.homepage.application.user.service.dto.response.UserOAuthResponse;
 import ussum.homepage.domain.user.User;
+import ussum.homepage.domain.user.auth.KakaoUserInfo;
 import ussum.homepage.domain.user.service.UserFormatter;
+import ussum.homepage.domain.user.service.UserModifier;
 import ussum.homepage.domain.user.service.UserReader;
+import ussum.homepage.global.jwt.JwtTokenInfo;
+import ussum.homepage.global.jwt.JwtTokenProvider;
+
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -25,6 +33,8 @@ import ussum.homepage.domain.user.service.UserReader;
 public class OAuthService {
     private final UserFormatter userFormatter;
     private final UserReader userReader;
+    private final UserModifier userModifier;
+    private final JwtTokenProvider provider;
 
     @Value("${oauth2.kakao.client_id}")
     private String clientId;
@@ -78,7 +88,7 @@ public class OAuthService {
     }
 
     @Transactional
-    public String getUserInfo(String accessToken) {
+    public UserOAuthResponse getUserInfo(String accessToken) {
 
         String urlString = resource_uri;
 
@@ -95,8 +105,31 @@ public class OAuthService {
                     log.info("error content : {}", error.getMessage());
                 })
                 .block();
-        String profileImage = userInfo.getKakaoAccount().getProfile().getThumbnailImageUrl(); // or .getProfileImageUrl()
-        return profileImage;
+//        String profileImage = userInfo.getKakaoAccount().getProfile().getThumbnailImageUrl(); // or .getProfileImageUrl()
+//        Long id = userInfo.getId();
+        return signIn(userInfo);
+    }
+
+    @Transactional
+    public UserOAuthResponse signIn(KakaoUserInfoResponseDto userInfo){
+        User getUser = saveUser(userInfo);
+        Boolean isFirstLogin = Objects.isNull(getUser.getStudentId()) ? Boolean.TRUE : Boolean.FALSE;
+        JwtTokenInfo tokenInfo = issueAccessTokenAndRefreshToken(getUser);
+        return UserOAuthResponse.of(getUser, tokenInfo, isFirstLogin);
+    }
+
+    private User saveUser(KakaoUserInfoResponseDto userInfo) {
+        User createdUser = getUserByKakaoUserInfo(userInfo);
+        return userModifier.save(createdUser);
+    }
+
+    private User getUserByKakaoUserInfo(KakaoUserInfoResponseDto userInfo) {
+        Optional<User> optionalUser = userReader.findBykakaoId(userInfo.getId());
+        return optionalUser.orElseGet(() -> User.createUser(userInfo));
+    }
+
+    private JwtTokenInfo issueAccessTokenAndRefreshToken(User user) {
+        return provider.issueToken(user);
     }
 
 }
