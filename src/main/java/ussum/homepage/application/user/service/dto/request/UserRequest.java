@@ -4,16 +4,17 @@ import ussum.homepage.domain.user.User;
 
 public record UserRequest(
         Long id,
-        String profileImage,
         String name,
-        Long studentId
+        Long studentId,
+        String profileImage
 ) {
     public User toDomain(){
         return User.of(
-                null, // id값은 뭘 의미?
+                null,
                 name,
                 studentId,
                 profileImage,
+                null,
                 null,
                 null
         );
