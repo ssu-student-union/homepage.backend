@@ -22,4 +22,10 @@ public class UserRepositoryImpl implements UserRepository {
     public User save(User user) {
         return userMapper.toDomain(userJpaRepository.save(userMapper.toEntity(user)));
     }
+
+
+    @Override
+    public Optional<User> findBykakaoId(Long kakaoId){
+        return userJpaRepository.findByKakaoId(kakaoId).map(userMapper::toDomain);
+    }
 }
