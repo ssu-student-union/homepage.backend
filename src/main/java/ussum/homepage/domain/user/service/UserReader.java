@@ -20,8 +20,7 @@ public class UserReader {
     }
 
     public Optional<User> findBykakaoId(Long kakaoId) {
-        return Optional.ofNullable(userRepository.findBykakaoId(kakaoId)
-                .orElseThrow(() -> new GeneralException(USER_NOT_FOUND)));
+        return userRepository.findBykakaoId(kakaoId);
     }
 
 
