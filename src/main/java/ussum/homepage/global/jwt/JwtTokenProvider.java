@@ -5,6 +5,7 @@ import io.jsonwebtoken.security.Keys;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 import ussum.homepage.domain.user.Member;
+import ussum.homepage.domain.user.User;
 import ussum.homepage.global.error.exception.UnauthorizedException;
 
 import java.security.Key;
@@ -28,35 +29,33 @@ public class JwtTokenProvider {
     }
 
     // 토큰 발급, 파라미터를 Member로 해야하나?
-    public JwtTokenInfo issueToken(Member member){
-        return JwtTokenInfo.of(createAccessToken(member), createRefreshToken(member));
+    public JwtTokenInfo issueToken(User user){
+        return JwtTokenInfo.of(createAccessToken(user), createRefreshToken(user));
     }
 
-    public String createAccessToken(Member member){
+    public String createAccessToken(User user){
         // 유저 정보를 담기 위해 claim 사용
         Claims claims = Jwts.claims();
-        claims.put("id", member.getId());
-        claims.put("role", member.getGroupId());
+        claims.put("id", user.getId());
 
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, "access_token")
                 .setClaims(claims)
-                .setSubject(String.valueOf(member.getId()))
+                .setSubject(String.valueOf(user.getKakaoId()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRE_TIME))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public String createRefreshToken(Member member){
+    public String createRefreshToken(User user){
         Claims claims = Jwts.claims();
-        claims.put("id", member.getId());
-        claims.put("role", member.getGroupId());
+        claims.put("id", user.getId());
 
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, "refresh_token")
                 .setClaims(claims)
-                .setSubject(String.valueOf(member.getId()))
+                .setSubject(String.valueOf(user.getKakaoId()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRE_TIME))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
