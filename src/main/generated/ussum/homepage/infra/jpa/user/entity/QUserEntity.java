@@ -26,6 +26,8 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final NumberPath<Long> kakaoId = createNumber("kakaoId", Long.class);
+
     public final StringPath name = createString("name");
 
     public final StringPath profileImage = createString("profileImage");
