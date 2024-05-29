@@ -1,4 +1,4 @@
-package ussum.homepage.domain.user.service.formatter;
+package ussum.homepage.domain.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
