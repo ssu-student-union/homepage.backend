@@ -17,6 +17,7 @@ import ussum.homepage.application.user.service.dto.response.KakaoUserInfoRespons
 import ussum.homepage.application.user.service.dto.response.UserOAuthResponse;
 import ussum.homepage.domain.user.User;
 import ussum.homepage.domain.user.auth.KakaoUserInfo;
+import ussum.homepage.domain.user.service.UserAppender;
 import ussum.homepage.domain.user.service.UserFormatter;
 import ussum.homepage.domain.user.service.UserModifier;
 import ussum.homepage.domain.user.service.UserReader;
@@ -34,6 +35,7 @@ public class OAuthService {
     private final UserFormatter userFormatter;
     private final UserReader userReader;
     private final UserModifier userModifier;
+    private final UserAppender userAppender;
     private final JwtTokenProvider provider;
 
     @Value("${oauth2.kakao.client_id}")
@@ -105,22 +107,29 @@ public class OAuthService {
                     log.info("error content : {}", error.getMessage());
                 })
                 .block();
-//        String profileImage = userInfo.getKakaoAccount().getProfile().getThumbnailImageUrl(); // or .getProfileImageUrl()
-//        Long id = userInfo.getId();
         return signIn(userInfo);
     }
 
     @Transactional
-    public UserOAuthResponse signIn(KakaoUserInfoResponseDto userInfo){
-        User getUser = saveUser(userInfo);
-        Boolean isFirstLogin = Objects.isNull(getUser.getStudentId()) ? Boolean.TRUE : Boolean.FALSE;
-        JwtTokenInfo tokenInfo = issueAccessTokenAndRefreshToken(getUser);
-        return UserOAuthResponse.of(getUser, tokenInfo, isFirstLogin);
+    public UserOAuthResponse signIn(KakaoUserInfoResponseDto userInfo) {
+        Optional<User> optionalUser = userReader.findBykakaoId(userInfo.getId());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            return UserOAuthResponse.of(user, issueAccessTokenAndRefreshToken(user), Objects.isNull(user.getStudentId()));
+        }else {
+            // 사용자가 존재하지 않거나 예외가 발생한 경우에는 새로운 사용자로 처리
+            User savedUser = saveUser(userInfo);
+            JwtTokenInfo tokenInfo = issueAccessTokenAndRefreshToken(savedUser);
+            Boolean isFirstLogin = Objects.isNull(savedUser.getStudentId());
+            return UserOAuthResponse.of(savedUser, tokenInfo, isFirstLogin);
+        }
     }
 
     private User saveUser(KakaoUserInfoResponseDto userInfo) {
         User createdUser = getUserByKakaoUserInfo(userInfo);
+        log.info("카카오 id, 프로필 url 저장 완료");
         return userModifier.save(createdUser);
+
     }
 
     private User getUserByKakaoUserInfo(KakaoUserInfoResponseDto userInfo) {

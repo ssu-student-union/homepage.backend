@@ -18,15 +18,13 @@ public class OAuthController {
 
     @GetMapping("/page")
     public void LoginPage(HttpServletResponse response) throws Exception{
-        String redirectUri= oAuthService.getKakaoLogin();
-        response.sendRedirect(redirectUri);
+        response.sendRedirect(oAuthService.getKakaoLogin());
     }
 
     @GetMapping("/callback")
     public ApiResponse<UserOAuthResponse> callback(@RequestParam("code") String code){
         String accessToken = oAuthService.getAccessToken(code);
-        UserOAuthResponse response = oAuthService.getUserInfo(accessToken);
-        return ApiResponse.onSuccess(response);
+        return ApiResponse.onSuccess(oAuthService.getUserInfo(accessToken));
     }
 
 }
